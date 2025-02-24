@@ -59,7 +59,7 @@ The included instructions allow you to generate model pairs, simulate games, run
 
    ```bash
    cd backend
-   python3 main.py --models ollama-llama3.2 ollama-llama3.3
+   python3 main.py --models ollama-llama3.2 ollama-llama3.3 
    ```
 
 3. **Run Many Games in Parallel:**
