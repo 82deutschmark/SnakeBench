@@ -64,6 +64,7 @@ class TogetherProvider(LLMProviderInterface):
         response = self.client.chat.completions.create(
             model=model,
             messages=[{"role": "user", "content": prompt}],
+            max_tokens=20000,
         )
         return response.choices[0].message.content.strip()
 
