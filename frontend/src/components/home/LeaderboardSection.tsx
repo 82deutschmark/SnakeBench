@@ -1,0 +1,176 @@
+type LeaderboardItem = {
+  rank: number;
+  model: string;
+  wins: number;
+  losses: number;
+  winRate: number;
+  elo: number;
+  top_score: number;
+};
+
+type StatsData = {
+  totalGames: number;
+  aggregatedData: {
+    [key: string]: {
+      wins: number;
+      losses: number;
+      ties: number;
+      apples_eaten: number;
+      elo: number;
+      first_game_time: string;
+      last_game_time: string;
+      top_score: number;
+    };
+  };
+};
+
+// Function to fetch and transform leaderboard data
+async function getLeaderboardData(): Promise<LeaderboardItem[]> {
+  try {
+    const response = await fetch(`${process.env.FLASK_URL}/api/stats?simple=true`);
+    
+    if (!response.ok) {
+      throw new Error('Failed to fetch leaderboard data');
+    }
+    
+    const data: StatsData = await response.json();
+    
+    // Transform the API data into our leaderboard format
+    const transformedData = Object.entries(data.aggregatedData)
+      .map(([model, stats]) => ({
+        model,
+        wins: stats.wins,
+        losses: stats.losses,
+        top_score: stats.top_score,
+        winRate: stats.wins + stats.losses > 0 
+          ? Number(((stats.wins / (stats.wins + stats.losses)) * 100).toFixed(1)) 
+          : 0,
+        elo: stats.elo,
+      }))
+      .filter(item => item.wins + item.losses >= 20) // Only include models with at least 20 games
+      .sort((a, b) => b.elo - a.elo) // Sort by ELO
+      .map((item, index) => ({
+        ...item,
+        rank: index + 1,
+      }))
+      .slice(0, 25); // Take top 10
+    
+    return transformedData;
+  } catch (err) {
+    console.error('Error fetching leaderboard data:', err);
+    return [];
+  }
+}
+
+export default async function LeaderboardSection() {
+  const leaderboardData = await getLeaderboardData();
+  
+  if (leaderboardData.length === 0) {
+    return (
+      <div className="bg-white shadow rounded-lg overflow-hidden p-6">
+        <h2 className="text-lg font-press-start text-gray-900">Global Leaderboard</h2>
+        <p className="mt-1 text-sm font-mono text-red-500">Failed to load leaderboard data</p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="bg-white shadow rounded-lg overflow-hidden">
+      <div className="px-4 py-5 border-b border-gray-200 sm:px-6">
+        <div className="flex items-center">
+          <h2 className="text-lg font-press-start text-gray-900">Global Leaderboard</h2>
+          <div className="flex items-center ml-3">
+            <div className="relative mr-1">
+              <div className="h-2 w-2 rounded-full bg-red-500 absolute animate-ping"></div>
+              <div className="h-2 w-2 rounded-full bg-red-500 relative"></div>
+            </div>
+            <span className="text-xs font-mono uppercase tracking-wider text-red-500">LIVE</span>
+          </div>
+        </div>
+        <p className="mt-1 text-sm font-mono text-gray-500">Updated in real-time based on match results</p>
+      </div>
+      <div className="px-4 sm:px-6 py-4">
+        <div className="flex flex-col">
+          <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+            <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+              <div className="overflow-hidden">
+                <table className="min-w-full divide-y divide-gray-200">
+                  <thead className="bg-gray-50">
+                    <tr>
+                      <th
+                        scope="col"
+                        className="px-6 py-3 text-left text-xs font-mono text-gray-500 uppercase tracking-wider"
+                      >
+                        Rank
+                      </th>
+                      <th
+                        scope="col"
+                        className="px-6 py-3 text-left text-xs font-mono text-gray-500 uppercase tracking-wider"
+                      >
+                        Model
+                      </th>
+                      <th
+                        scope="col"
+                        className="px-6 py-3 text-left text-xs font-mono text-gray-500 uppercase tracking-wider"
+                      >
+                        W/L
+                      </th>
+                      <th
+                        scope="col"
+                        className="px-6 py-3 text-left text-xs font-mono text-gray-500 uppercase tracking-wider"
+                      >
+                        Top Score
+                      </th>
+                      <th
+                        scope="col"
+                        className="px-6 py-3 text-left text-xs font-mono text-gray-500 uppercase tracking-wider"
+                      >
+                        Win Rate
+                      </th>
+                      <th
+                        scope="col"
+                        className="px-6 py-3 text-left text-xs font-mono text-gray-500 uppercase tracking-wider"
+                      >
+                        ELO
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody className="bg-white divide-y divide-gray-200">
+                    {leaderboardData.map((item) => (
+                      <tr key={item.model} className="hover:bg-gray-50">
+                        <td className="px-6 py-4 whitespace-nowrap text-sm font-mono text-gray-900">
+                          #{item.rank}
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <a href={`/models/${item.model}`} className="font-mono text-sm text-blue-600 hover:text-blue-800 hover:underline">
+                            {item.model}
+                          </a>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <div className="font-mono text-sm text-gray-900">
+                            {item.wins}/{item.losses}
+                          </div>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <div className="font-mono text-sm text-gray-900">{item.top_score}</div>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <div className="font-mono text-sm text-gray-900">{item.winRate}%</div>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <div className="font-mono text-sm text-gray-900">
+                            {Math.round(item.elo)}
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+} 

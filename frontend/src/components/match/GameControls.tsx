@@ -1,86 +1,73 @@
-'use client';
+"use client"
+
+import { Play, SkipBack, SkipForward, ChevronsLeft, ChevronsRight, Pause } from "lucide-react"
+import { Button } from "@/components/ui/button"
 
 interface GameControlsProps {
   currentRound: number;
   totalRounds: number;
   isPlaying: boolean;
-  playbackSpeed: number;
   onPlay: () => void;
-  onSpeedChange: (speed: number) => void;
-  onRoundChange: (round: number) => void;
+  onNext: () => void;
+  onPrev: () => void;
+  onStart: () => void;
+  onEnd: () => void;
 }
 
 export default function GameControls({
   currentRound,
   totalRounds,
   isPlaying,
-  playbackSpeed,
   onPlay,
-  onSpeedChange,
-  onRoundChange,
+  onNext,
+  onPrev,
+  onStart,
+  onEnd
 }: GameControlsProps) {
+  const progressPercentage = (currentRound / (totalRounds - 1)) * 100;
+  
   return (
-    <div className="mt-4 flex flex-col gap-4">
-      {/* Progress Bar */}
-      <div className="flex items-center gap-2">
-        <input
-          type="range"
-          min={0}
-          max={totalRounds - 1}
-          value={currentRound}
-          onChange={(e) => onRoundChange(Number(e.target.value))}
-          className="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer"
+    <div className="mt-6 flex flex-col items-center gap-4">
+      {/* Progress bar */}
+      <div className="w-full max-w-md h-1 bg-gray-100 rounded-full overflow-hidden">
+        <div 
+          className="h-full bg-blue-500 rounded-full" 
+          style={{ width: `${progressPercentage}%` }}
         />
-        <span className="text-sm w-16 text-center">
-          {currentRound + 1}/{totalRounds}
-        </span>
       </div>
 
-      {/* Controls */}
-      <div className="flex justify-center items-center gap-4">
-        <button
-          onClick={() => onRoundChange(0)}
-          className="p-2 hover:bg-gray-700 rounded"
-        >
-          ⏮️
-        </button>
-        <button
-          onClick={() => onRoundChange(Math.max(0, currentRound - 1))}
-          className="p-2 hover:bg-gray-700 rounded"
-        >
-          ⏪
-        </button>
-        <button
-          onClick={onPlay}
-          className="p-2 hover:bg-gray-700 rounded text-2xl"
-        >
-          {isPlaying ? "⏸️" : "▶️"}
-        </button>
-        <button
-          onClick={() => onRoundChange(Math.min(totalRounds - 1, currentRound + 1))}
-          className="p-2 hover:bg-gray-700 rounded"
-        >
-          ⏩
-        </button>
-        <button
-          onClick={() => onRoundChange(totalRounds - 1)}
-          className="p-2 hover:bg-gray-700 rounded"
-        >
-          ⏭️
-        </button>
-
-        {/* Playback Speed */}
-        <select
-          value={playbackSpeed}
-          onChange={(e) => onSpeedChange(Number(e.target.value))}
-          className="bg-gray-700 rounded px-2 py-1 text-sm"
-        >
-          <option value={0.5}>0.5x</option>
-          <option value={1}>1x</option>
-          <option value={2}>2x</option>
-          <option value={4}>4x</option>
-        </select>
+      {/* Control buttons */}
+      <div className="flex items-center gap-2">
+        <Button variant="outline" size="icon" className="h-8 w-8" onClick={onStart}>
+          <ChevronsLeft className="h-4 w-4" />
+          <span className="sr-only">Start</span>
+        </Button>
+        <Button variant="outline" size="icon" className="h-8 w-8" onClick={onPrev}>
+          <SkipBack className="h-4 w-4" />
+          <span className="sr-only">Previous</span>
+        </Button>
+        <Button variant="outline" size="icon" className="h-8 w-8" onClick={onPlay}>
+          {isPlaying ? (
+            <Pause className="h-4 w-4" />
+          ) : (
+            <Play className="h-4 w-4" />
+          )}
+          <span className="sr-only">{isPlaying ? 'Pause' : 'Play'}</span>
+        </Button>
+        <Button variant="outline" size="icon" className="h-8 w-8" onClick={onNext}>
+          <SkipForward className="h-4 w-4" />
+          <span className="sr-only">Next</span>
+        </Button>
+        <Button variant="outline" size="icon" className="h-8 w-8" onClick={onEnd}>
+          <ChevronsRight className="h-4 w-4" />
+          <span className="sr-only">End</span>
+        </Button>
       </div>
+
+      {/* Move counter */}
+      <p className="font-mono text-[10px] text-gray-500">
+        Round {currentRound + 1} / {totalRounds}
+      </p>
     </div>
   );
 } 

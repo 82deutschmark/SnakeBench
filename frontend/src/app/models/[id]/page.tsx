@@ -1,4 +1,4 @@
-import AnimatedTitle from '@/components/AnimatedTitle'
+import Link from 'next/link';
 
 interface Game {
   game_id: string;
@@ -24,7 +24,7 @@ interface ModelStats {
   games: Game[];
 }
 
-export default async function ModelGamesPage({ params }: { params: Promise<{ id: string }> }) {
+export default async function ModelDetailsPage({ params }: { params: Promise<{ id: string }> }) {
   // Await the params object
   const { id: modelId } = await params;
   
@@ -37,78 +37,206 @@ export default async function ModelGamesPage({ params }: { params: Promise<{ id:
 
   if (!modelStats) {
     return (
-      <div style={{ fontFamily: "monospace", maxWidth: "800px", margin: "0 auto", padding: "20px" }}>
-        <AnimatedTitle />
-        <hr />
-        <p>Model &quot;{modelId}&quot; not found.</p>
+      <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+        <div className="text-center">
+          <h1 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+            Model Not Found
+          </h1>
+          <p className="mt-3 max-w-2xl mx-auto text-xl text-gray-500 sm:mt-4">
+            Model &quot;{modelId}&quot; could not be found in our database.
+          </p>
+          <div className="mt-5">
+            <Link href="/" className="text-indigo-600 hover:text-indigo-500">
+              Return to home page
+            </Link>
+          </div>
+        </div>
       </div>
     );
   }
 
   const games = [...(modelStats.games || [])].sort((a, b) => (b.opponent_elo || 0) - (a.opponent_elo || 0));
+  
+  // Calculate win rate percentage
+  const totalGames = modelStats.wins + modelStats.losses + modelStats.ties;
+  const winRate = totalGames > 0 ? ((modelStats.wins / totalGames) * 100).toFixed(1) : "0.0";
 
   return (
-    <div style={{ fontFamily: "monospace", maxWidth: "800px", margin: "0 auto", padding: "20px" }}>
-      <h1 className="text-xl font-bold mb-4 pt-4">Match Records for Model: {modelId}</h1>
-      <table style={{ width: "100%", borderCollapse: "collapse" }}>
-        <thead>
-          <tr>
-            <th style={{ border: "1px solid #ddd", padding: "8px" }}>Opponent</th>
-            <th style={{ border: "1px solid #ddd", padding: "8px" }}>Start Time</th>
-            <th style={{ border: "1px solid #ddd", padding: "8px" }}>Duration</th>
-            <th style={{ border: "1px solid #ddd", padding: "8px" }}>Outcome</th>
-            <th style={{ border: "1px solid #ddd", padding: "8px" }}>Loss Reason</th>
-            <th style={{ border: "1px solid #ddd", padding: "8px", textDecoration: "underline" }}>View Match</th>
-          </tr>
-        </thead>
-        <tbody>
-          {games.map((game, index) => {
-            // For a lost game, show the loss reason (if available)
-            const lossReason = game.result === "lost" && game.death_info ? game.death_info.reason : "";
-            
-            // Determine the background color for the outcome
-            const outcomeBackground =
-              game.result === "lost" ? "#ffebee" : game.result === "won" ? "#e8f5e9" : "inherit";
-            
-            return (
-              <tr key={game.game_id || index}>
-                <td style={{ border: "1px solid #ddd", padding: "8px" }}>{game.opponent_model}</td>
-                <td style={{ border: "1px solid #ddd", padding: "8px" }}>
-                  {new Date(game.start_time).toLocaleString('en-US', {
-                    year: 'numeric',
-                    month: '2-digit', 
-                    day: '2-digit',
-                    hour: 'numeric',
-                    minute: '2-digit',
-                    hour12: true
-                  }).replace(',','')}
-                </td>
-                <td style={{ border: "1px solid #ddd", padding: "8px" }}>
-                  {(() => {
-                    const start = new Date(game.start_time);
-                    const end = new Date(game.end_time);
-                    const diffMs = end.getTime() - start.getTime();
-                    const minutes = Math.floor(diffMs / 60000);
-                    const seconds = Math.floor((diffMs % 60000) / 1000);
-                    return `${minutes}min ${seconds}sec`;
-                  })()}
-                </td>
-                <td style={{ border: "1px solid #ddd", padding: "8px", backgroundColor: outcomeBackground }}>
-                  {game.result}
-                </td>
-                <td style={{ border: "1px solid #ddd", padding: "8px" }}>{lossReason}</td>
-                <td style={{ border: "1px solid #ddd", padding: "8px" }}>
-                  <a href={`/match/${game.game_id}`}>View Match</a>
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
-      <hr />
-      <p style={{ textAlign: "center", fontSize: "0.8em" }}>
-        Last updated: {new Date().toLocaleString()}
-      </p>
+    <div className="bg-white">
+      {/* Model Header Section */}
+      <div className="bg-gray-50 py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <h1 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+              {modelId}
+            </h1>
+            <p className="mt-3 max-w-2xl mx-auto text-xl text-gray-500 sm:mt-4">
+              Performance statistics and match history
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Model Stats Section */}
+      <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="bg-white overflow-hidden shadow rounded-lg">
+            <div className="px-4 py-5 sm:p-6">
+              <dt className="text-sm font-medium text-gray-500 truncate">
+                Total Matches
+              </dt>
+              <dd className="mt-1 text-3xl font-semibold text-gray-900">
+                {totalGames}
+              </dd>
+            </div>
+          </div>
+          
+          <div className="bg-white overflow-hidden shadow rounded-lg">
+            <div className="px-4 py-5 sm:p-6">
+              <dt className="text-sm font-medium text-gray-500 truncate">
+                Win Rate
+              </dt>
+              <dd className="mt-1 text-3xl font-semibold text-gray-900">
+                {winRate}%
+              </dd>
+            </div>
+          </div>
+          
+          <div className="bg-white overflow-hidden shadow rounded-lg">
+            <div className="px-4 py-5 sm:p-6">
+              <dt className="text-sm font-medium text-gray-500 truncate">
+                ELO Rating
+              </dt>
+              <dd className="mt-1 text-3xl font-semibold text-gray-900">
+                {Math.round(modelStats.elo).toLocaleString()}
+              </dd>
+            </div>
+          </div>
+          
+          <div className="bg-white overflow-hidden shadow rounded-lg">
+            <div className="px-4 py-5 sm:p-6">
+              <dt className="text-sm font-medium text-gray-500 truncate">
+                Apples Eaten
+              </dt>
+              <dd className="mt-1 text-3xl font-semibold text-gray-900">
+                {modelStats.apples_eaten}
+              </dd>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Match History Section */}
+      <div className="max-w-7xl mx-auto pb-12 px-4 sm:px-6 lg:px-8">
+        <h2 className="text-2xl font-bold text-gray-900 mb-6">Match History</h2>
+        <div className="flex flex-col">
+          <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+            <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+              <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                <table className="min-w-full divide-y divide-gray-200">
+                  <thead className="bg-gray-50">
+                    <tr>
+                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Opponent
+                      </th>
+                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Start Time
+                      </th>
+                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Duration
+                      </th>
+                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Outcome
+                      </th>
+                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Loss Reason
+                      </th>
+                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Score
+                      </th>
+                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Actions
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody className="bg-white divide-y divide-gray-200">
+                    {games.map((game, index) => {
+                      // For a lost game, show the loss reason (if available)
+                      const lossReason = game.result === "lost" && game.death_info ? game.death_info.reason : "";
+                      
+                      // Format the date
+                      const formattedDate = new Date(game.start_time).toLocaleString('en-US', {
+                        year: 'numeric',
+                        month: '2-digit', 
+                        day: '2-digit',
+                        hour: 'numeric',
+                        minute: '2-digit',
+                        hour12: true
+                      }).replace(',','');
+                      
+                      // Calculate duration
+                      const start = new Date(game.start_time);
+                      const end = new Date(game.end_time);
+                      const diffMs = end.getTime() - start.getTime();
+                      const minutes = Math.floor(diffMs / 60000);
+                      const seconds = Math.floor((diffMs % 60000) / 1000);
+                      const duration = `${minutes}min ${seconds}sec`;
+                      
+                      // Determine outcome styling
+                      let outcomeClass = "";
+                      if (game.result === "won") {
+                        outcomeClass = "bg-green-100 text-green-800";
+                      } else if (game.result === "lost") {
+                        outcomeClass = "bg-red-100 text-red-800";
+                      } else {
+                        outcomeClass = "bg-gray-100 text-gray-800";
+                      }
+                      
+                      return (
+                        <tr key={game.game_id || index}>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                            <Link href={`/models/${game.opponent_model}`} className="text-indigo-600 hover:text-indigo-900">
+                              {game.opponent_model}
+                            </Link>
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            {formattedDate}
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            {duration}
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap">
+                            <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${outcomeClass}`}>
+                              {game.result.charAt(0).toUpperCase() + game.result.slice(1)}
+                            </span>
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            {lossReason}
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            {game.my_score} - {game.opponent_score}
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                            <Link href={`/match/${game.game_id}`} className="text-indigo-600 hover:text-indigo-900">
+                              View Match
+                            </Link>
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div className="max-w-7xl mx-auto pb-12 px-4 sm:px-6 lg:px-8">
+        <p className="text-center text-sm text-gray-500">
+          Last updated: {new Date().toLocaleString()}
+        </p>
+      </div>
     </div>
   );
 }

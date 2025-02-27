@@ -274,6 +274,25 @@ def main():
         model: {k: v for k, v in data.items() if k != "games"} 
         for model, data in stats.items() 
     }
+    
+    # Add first and last game timestamps and top score for each model
+    for model, data in stats.items():
+        if "games" in data and data["games"]:
+            # Sort games by start_time to ensure correct ordering
+            sorted_games = sorted(data["games"], key=lambda g: g.get("start_time", ""))
+            
+            # Get first and last game timestamps
+            first_game = sorted_games[0].get("start_time", "")
+            last_game = sorted_games[-1].get("start_time", "")
+            
+            # Find the highest score across all games
+            top_score = max([game.get("my_score", 0) for game in data["games"]])
+            
+            # Add to model_stats
+            model_stats[model]["first_game_time"] = first_game
+            model_stats[model]["last_game_time"] = last_game
+            model_stats[model]["top_score"] = top_score
+    
     simple_output_path = os.path.join(args.output, "stats_simple.json")
     with open(simple_output_path, "w") as f:
         json.dump(model_stats, f, indent=2)

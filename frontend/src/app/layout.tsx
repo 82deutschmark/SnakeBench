@@ -1,65 +1,38 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
-import AnimatedTitle from "../components/AnimatedTitle";
-import Footer from "../components/Footer";
-import Link from "next/link";
+import { ReactNode } from 'react'
+import Navbar from "@/components/layout/Navbar"
+import Footer from "@/components/layout/Footer"
+import './globals.css'
 import { PostHogProvider } from "./providers";
+import { Press_Start_2P } from "next/font/google"
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+// Initialize the Press Start 2P font
+const pressStart2P = Press_Start_2P({
   subsets: ["latin"],
-});
+  weight: "400",
+  variable: "--font-press-start-2p",
+})
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-export const metadata: Metadata = {
-  title: "SnakeBench",
-  description:
-    "SnakeBench is a platform for testing and comparing LLMs in a snake arena.",
-  icons: {
-    icon: "/favicon.ico",
-  },
-};
+export const metadata = {
+  title: 'Snake AI Arena',
+  description: 'Watch AI models compete in Snake battles',
+}
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: {
+  children: ReactNode
+}) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${pressStart2P.variable} font-sans min-h-screen flex flex-col bg-gray-50`}>
         <PostHogProvider>
-          <AnimatedTitle />
-          <nav className="flex justify-center items-center gap-4 pt-2 font-mono">
-            <Link href="/" className="hover:text-gray-600 transition-colors">
-              Home
-            </Link>
-            <span className="text-gray-400">•</span>
-            <Link
-              href="/match/b959b595-8b4f-47a0-99fa-99ab8cfe9a9f"
-              className="hover:text-gray-600 transition-colors"
-            >
-              Best Match
-            </Link>
-            <span className="text-gray-400">•</span>
-            <Link
-              href="/findings"
-              className="hover:text-gray-600 transition-colors"
-            >
-              Analysis
-            </Link>
-          </nav>
-          {children}
+          <Navbar />
+          <main className="flex-1">
+            {children}
+          </main>
           <Footer />
         </PostHogProvider>
       </body>
     </html>
-  );
+  )
 }
