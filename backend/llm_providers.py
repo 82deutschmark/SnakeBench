@@ -2,6 +2,7 @@ import os
 from openai import OpenAI
 import anthropic
 import google.generativeai as genai  # Add this import
+from typing import Dict, Any
 from together import Together
 from ollama import chat
 from ollama import ChatResponse
@@ -82,7 +83,7 @@ class OllamaProvider(LLMProviderInterface):
         ])
         return response.message.content.strip()
 
-def create_llm_provider(model: str) -> LLMProviderInterface:
+def create_llm_provider(player_config: Dict[str, Any]) -> LLMProviderInterface:
     """
     Factory function for creating an LLM provider instance.
     If any substring in the openai_substrings list is found in the model name (case-insensitive),
@@ -90,30 +91,26 @@ def create_llm_provider(model: str) -> LLMProviderInterface:
     If any substring in the anthropic_substrings list is found, returns an instance of AnthropicProvider.
     Otherwise, raises a ValueError.
     """
-    model_lower = model.lower()
-    openai_substrings = ["gpt-", "o1-", "o3-"]
-    anthropic_substrings = ["claude"]
-    gemini_substrings = ["gemini"]
-    together_substrings = ["meta-llama", "deepseek", "Gryphe", "microsoft", "mistralai", "NousResearch", "nvidia", "Qwen", "upstage"]
-    ollama_substrings = ["ollama-"]
+    model_lower = player_config['model_name'].lower()
+    provider = player_config['provider']
 
-    if any(substr.lower() in model_lower for substr in openai_substrings):
+    if provider == 'openai':
         if not os.getenv("OPENAI_API_KEY"):
             raise ValueError("OPENAI_API_KEY is not set in the environment variables.")
         return OpenAIProvider(api_key=os.getenv("OPENAI_API_KEY"))
-    elif any(substr.lower() in model_lower for substr in anthropic_substrings):
+    elif provider == 'anthropic':
         if not os.getenv("ANTHROPIC_API_KEY"):
             raise ValueError("ANTHROPIC_API_KEY is not set in the environment variables.")
         return AnthropicProvider(api_key=os.getenv("ANTHROPIC_API_KEY"))
-    elif any(substr.lower() in model_lower for substr in gemini_substrings):
+    elif provider == 'gemini':
         if not os.getenv("GOOGLE_API_KEY"):
             raise ValueError("GOOGLE_API_KEY is not set in the environment variables.")
         return GeminiProvider(api_key=os.getenv("GOOGLE_API_KEY"))
-    elif any(substr.lower() in model_lower for substr in ollama_substrings):
+    elif provider == 'ollama':
         return OllamaProvider(url=os.getenv("OLLAMA_URL", "http://localhost:11434"))
-    elif any(substr.lower() in model_lower for substr in together_substrings):
+    elif provider == 'together':
         if not os.getenv("TOGETHERAI_API_KEY"):
             raise ValueError("TOGETHERAI_API_KEY is not set in the environment variables.")
         return TogetherProvider(api_key=os.getenv("TOGETHERAI_API_KEY"))
     else:
-        raise ValueError(f"Unsupported model: {model}")
+        raise ValueError(f"Unsupported provider: {provider}")

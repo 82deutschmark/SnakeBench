@@ -54,6 +54,12 @@ models:
     api_type: 'responses'
     max_completion_tokens: 8000
 
+  - name: 'o1-pro-2025-03-19'
+    model_name: 'o1-pro-2025-03-19'
+    provider: 'openai'
+    api_type: 'responses'
+    max_completion_tokens: 8000
+
 ####################
 #### Anthropic #####
 ####################

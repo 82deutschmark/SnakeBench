@@ -1,6 +1,6 @@
 import random
 from collections import deque
-from typing import List, Tuple, Dict, Set, Optional
+from typing import List, Tuple, Dict, Set, Optional, Any
 import time
 from datetime import datetime
 import os
@@ -9,6 +9,7 @@ from openai import OpenAI
 import json
 import uuid
 import argparse
+from utils.utils import load_model_configs
 from llm_providers import create_llm_provider
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
@@ -20,7 +21,6 @@ DOWN = "DOWN"
 LEFT = "LEFT"
 RIGHT = "RIGHT"
 VALID_MOVES = {UP, DOWN, LEFT, RIGHT}
-
 
 class Snake:
     """
@@ -169,12 +169,13 @@ class LLMPlayer(Player):
     """
     LLM-based player that delegates the API call details to the provider abstraction.
     """
-    def __init__(self, snake_id: str, model: str = "gpt-4o-mini"):
+    def __init__(self, snake_id: str, player_config: Dict[str, Any]):
         super().__init__(snake_id)
-        self.model = model
+        self.model_name = player_config['model_name']
+        self.config = player_config
         self.move_history = []
         # Instantiate the correct provider based on the model name.
-        self.provider = create_llm_provider(model)
+        self.provider = create_llm_provider(player_config)
 
     def get_direction_from_response(self, response: str) -> Optional[str]:
         # Convert response to uppercase for case-insensitive comparison.
@@ -193,7 +194,7 @@ class LLMPlayer(Player):
         prompt = self._construct_prompt(game_state)
 
         # Use the abstracted provider to get the response.
-        response_text = self.provider.get_response(self.model, prompt)
+        response_text = self.provider.get_response(self.model_name, prompt)
         direction = self.get_direction_from_response(response_text)
 
         if direction is None:
@@ -660,15 +661,18 @@ def main():
 
     if len(args.models) < 2:
         raise ValueError("At least two models must be provided.")
+    
+    model_configs = load_model_configs()
+    player_configs = [model_configs[model] for model in args.models]
 
     # Create a game with a 5x5 board and 100 rounds (you can adjust these as needed)
     game = SnakeGame(width=args.width, height=args.height, max_rounds=args.max_rounds, num_apples=args.num_apples)
 
     # Add two snakes with LLM players using the specified models
-    for i, model in enumerate(args.models, start=1):
+    for i, player_config in enumerate(player_configs):
         game.add_snake(
             snake_id=str(i),
-            player=LLMPlayer(str(i), model=model)
+            player=LLMPlayer(str(i), player_config=player_config)
         )
 
     # Run the game
