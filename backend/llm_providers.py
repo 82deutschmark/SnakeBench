@@ -2,7 +2,7 @@ import os
 from openai import OpenAI
 import anthropic
 import google.generativeai as genai  # Add this import
-from typing import Dict, Any
+from typing import Dict, Any, Optional
 from together import Together
 from ollama import chat
 from ollama import ChatResponse
@@ -16,16 +16,24 @@ class LLMProviderInterface:
 
 
 class OpenAIProvider(LLMProviderInterface):
-    def __init__(self, api_key: str):
+    def __init__(self, api_key: str, api_type: Optional[str] = None):
         self.client = OpenAI(api_key=api_key)
+        self.api_type = api_type if api_type else 'completions'
         
     def get_response(self, model: str, prompt: str) -> str:
-        response = self.client.chat.completions.create(
-            model=model,
-            messages=[{"role": "user", "content": prompt}],
-            max_completion_tokens=4096,
-        )
-        return response.choices[0].message.content.strip()
+        if self.api_type == 'responses':
+            response = self.client.responses.create(
+                model=model,
+                input=prompt,
+            )
+            return response.output_text.strip()
+        else:
+            response = self.client.chat.completions.create(
+                model=model,
+                messages=[{"role": "user", "content": prompt}],
+                max_tokens=4096,
+            )
+            return response.choices[0].message.content.strip()
 
 
 class AnthropicProvider(LLMProviderInterface):
@@ -93,11 +101,12 @@ def create_llm_provider(player_config: Dict[str, Any]) -> LLMProviderInterface:
     """
     model_lower = player_config['model_name'].lower()
     provider = player_config['provider']
+    api_type = player_config.get('api_type', "")
 
     if provider == 'openai':
         if not os.getenv("OPENAI_API_KEY"):
             raise ValueError("OPENAI_API_KEY is not set in the environment variables.")
-        return OpenAIProvider(api_key=os.getenv("OPENAI_API_KEY"))
+        return OpenAIProvider(api_key=os.getenv("OPENAI_API_KEY"), api_type=api_type)
     elif provider == 'anthropic':
         if not os.getenv("ANTHROPIC_API_KEY"):
             raise ValueError("ANTHROPIC_API_KEY is not set in the environment variables.")

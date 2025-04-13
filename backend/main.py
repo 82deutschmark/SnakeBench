@@ -293,7 +293,7 @@ class SnakeGame:
         self.snakes[snake_id] = Snake([positions])
         self.players[snake_id] = player
         self.scores[snake_id] = 0
-        print(f"Added snake '{snake_id}' ({player.model if hasattr(player, 'model') else player.__class__.__name__}) at {positions}.")
+        print(f"Added snake '{snake_id}' ({player.model_name if hasattr(player, 'model_name') else player.__class__.__name__}) at {positions}.")
 
     def set_apples(self, apple_positions: List[Tuple[int,int]]):
         """
@@ -571,7 +571,7 @@ class SnakeGame:
             filename = f"snake_game_{self.game_id}.json"
 
         model_names = {
-            sid: self.clean_model_name(player.model if hasattr(player, "model") else player.__class__.__name__)
+            sid: self.clean_model_name(player.name if hasattr(player, "name") else player.__class__.__name__)
             for sid, player in self.players.items()
         }
         
