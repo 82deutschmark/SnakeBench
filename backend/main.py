@@ -85,7 +85,7 @@ class GameState:
             board[ay][ax] = 'A'
             
         # Place snakes
-        for i, (snake_id, positions) in enumerate(self.snake_positions.items(), start=1):
+        for i, (snake_id, positions) in enumerate(self.snake_positions.items(), start=0):
             if not self.alive[snake_id]:
                 continue
             
@@ -171,6 +171,7 @@ class LLMPlayer(Player):
     """
     def __init__(self, snake_id: str, player_config: Dict[str, Any]):
         super().__init__(snake_id)
+        self.name = player_config['name']
         self.model_name = player_config['model_name']
         self.config = player_config
         self.move_history = []
