@@ -429,7 +429,7 @@ class SnakeGame:
                 cell_counts.setdefault(head_pos, []).append(sid)
 
         # Check wall collisions and collisions with any snake body (including tails).
-        # Here, we use the current board state (i.e. each snake’s full positions list) as the source of occupied cells.
+        # Here, we use the current board state (i.e. each snake's full positions list) as the source of occupied cells.
         for sid, head_pos in new_heads.items():
             snake = self.snakes[sid]
             if not snake.alive or head_pos is None:
@@ -446,7 +446,7 @@ class SnakeGame:
             # 3b. Collision with any snake's body, including tails.
             # (Note: We do not exclude any part of the body now.)
             for other_id, other_snake in self.snakes.items():
-                # If the new head lands on any occupied cell from the current state, it’s a collision.
+                # If the new head lands on any occupied cell from the current state, it's a collision.
                 if head_pos in other_snake.positions:
                     snake.alive = False
                     snake.death_reason = 'body_collision'
@@ -639,7 +639,57 @@ class SnakeGame:
 
 
 # -------------------------------
-# Example Usage
+# Simulation Function
+# -------------------------------
+
+def run_simulation(model_config_1: Dict, model_config_2: Dict, game_params: argparse.Namespace) -> Dict:
+    """
+    Runs a single snake game simulation between two models.
+
+    Args:
+        model_config_1: Configuration dictionary for the first player.
+        model_config_2: Configuration dictionary for the second player.
+        game_params: An object (like argparse.Namespace) containing game settings
+                     (width, height, max_rounds, num_apples).
+
+    Returns:
+        A dictionary summarizing the game results (game_id, final_scores, game_result).
+    """
+    # Create a game instance using parameters from game_params
+    game = SnakeGame(
+        width=game_params.width, 
+        height=game_params.height, 
+        max_rounds=game_params.max_rounds, 
+        num_apples=game_params.num_apples
+    )
+
+    # Add two snakes with LLM players using the provided model configurations
+    player_configs = [model_config_1, model_config_2]
+    for i, player_config in enumerate(player_configs):
+        game.add_snake(
+            snake_id=str(i),
+            player=LLMPlayer(str(i), player_config=player_config)
+        )
+
+    # Run the game loop
+    while not game.game_over:
+        game.run_round()
+
+    # Print final status and save history
+    print("\nFinal Scores:", game.scores)
+    print(f"Game history (ID: {game.game_id}):")
+    game.save_history_to_json()
+
+    # Return the results summary
+    return {
+        "game_id": game.game_id,
+        "final_scores": game.scores,
+        "game_result": game.game_result
+    }
+
+
+# -------------------------------
+# Example Usage (Main Entry Point)
 # -------------------------------
 def main():
     # Parse command line arguments for model ids for each snake
@@ -647,7 +697,7 @@ def main():
         description="Run Snake Game with two distinctive LLM models as players."
     )
     parser.add_argument("--models", type=str, nargs='+', required=True,
-                        help="2 or more model IDs for each snake (e.g. 'gpt-4o-mini-2024-07-18 llama3-8b-8192')")
+                        help="2 model IDs for the snakes (e.g. 'gpt-4o-mini-2024-07-18 llama3-8b-8192')")
     parser.add_argument("--width", type=int, required=False, default=10,
                         help="Width of the board from 0 to N")
     parser.add_argument("--height", type=int, required=False, default=10,
@@ -657,33 +707,27 @@ def main():
     parser.add_argument("--num_apples", type=int, required=False, default=5,
                         help="Number of apples on the board")
                         
-
     args = parser.parse_args()
 
-    if len(args.models) < 2:
-        raise ValueError("At least two models must be provided.")
+    if len(args.models) != 2: # Ensure exactly two models for single run
+        raise ValueError("Exactly two models must be provided for a single game run.")
     
     model_configs = load_model_configs()
-    player_configs = [model_configs[model] for model in args.models]
+    
+    # Get the specific configurations for the requested models
+    try:
+        config1 = model_configs[args.models[0]]
+        config2 = model_configs[args.models[1]]
+    except KeyError as e:
+        raise ValueError(f"Model '{e}' not found in model_list.yaml") from e
 
-    # Create a game with a 5x5 board and 100 rounds (you can adjust these as needed)
-    game = SnakeGame(width=args.width, height=args.height, max_rounds=args.max_rounds, num_apples=args.num_apples)
+    # Call the simulation function (Logic moved here)
+    result = run_simulation(config1, config2, args) # This line will be uncommented in the next step
+    
+    # Print the summary (Logic moved here)
+    print("\nSimulation Result Summary:") # This line will be uncommented in the next step
+    print(json.dumps(result, indent=2)) # This line will be uncommented in the next step
 
-    # Add two snakes with LLM players using the specified models
-    for i, player_config in enumerate(player_configs):
-        game.add_snake(
-            snake_id=str(i),
-            player=LLMPlayer(str(i), player_config=player_config)
-        )
-
-    # Run the game
-    while not game.game_over:
-        game.run_round()
-
-    print("\nFinal Scores:", game.scores)
-    print(f"Game history (ID: {game.game_id}):")
-
-    game.save_history_to_json()
 
 if __name__ == "__main__":
     main()

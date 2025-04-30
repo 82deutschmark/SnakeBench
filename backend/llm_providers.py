@@ -44,11 +44,6 @@ class OpenAIProvider(LLMProviderInterface):
         # Extract and store only the kwargs intended for the API call
         self.api_kwargs = self.extract_api_kwargs(config)
 
-        print(f"Config: {config}")
-        print(f"OpenAIProvider initialized for model: {self.model_name} with api_type: {self.api_type}")
-        print(f"OpenAIProvider API kwargs: {self.api_kwargs}")
-
-
     def get_response(self, prompt: str) -> str: # Removed model parameter
         if self.api_type == 'responses':
             # Assuming 'responses' API takes different args, adjust if needed
@@ -74,8 +69,6 @@ class AnthropicProvider(LLMProviderInterface):
         self.client = anthropic.Anthropic(api_key=api_key)
         self.model_name = config['model_name'] # Store model name
         self.api_kwargs = self.extract_api_kwargs(config)
-        print(f"AnthropicProvider initialized for model: {self.model_name}")
-        print(f"AnthropicProvider API kwargs: {self.api_kwargs}")
 
     def get_response(self, prompt: str) -> str: # Removed model parameter
         response = self.client.messages.create(
@@ -90,8 +83,6 @@ class GeminiProvider(LLMProviderInterface):
         genai.configure(api_key=api_key)
         self.model_name = config['model_name'] # Store model name
         self.api_kwargs = self.extract_api_kwargs(config)
-        print(f"GeminiProvider initialized for model: {self.model_name}")
-        print(f"GeminiProvider API kwargs: {self.api_kwargs}")
 
     def get_response(self, prompt: str) -> str: # Removed model parameter
         # Gemini requires kwargs inside generation_config
@@ -110,8 +101,6 @@ class TogetherProvider(LLMProviderInterface):
         self.client = Together(api_key=api_key)
         self.model_name = config['model_name'] # Store model name
         self.api_kwargs = self.extract_api_kwargs(config)
-        print(f"TogetherProvider initialized for model: {self.model_name}")
-        print(f"TogetherProvider API kwargs: {self.api_kwargs}")
 
     def get_response(self, prompt: str) -> str: # Removed model parameter
         response = self.client.chat.completions.create(
@@ -129,8 +118,6 @@ class OllamaProvider(LLMProviderInterface):
         # Store model name, removing prefix if present
         raw_model_name = config['model_name'] if config else 'unknown'
         self.model_name = raw_model_name[len("ollama-"):] if raw_model_name.lower().startswith("ollama-") else raw_model_name
-        print(f"OllamaProvider initialized for model: {self.model_name}")
-        print(f"OllamaProvider API kwargs: {self.api_kwargs}")
 
 
     def get_response(self, prompt: str) -> str: # Removed model parameter
