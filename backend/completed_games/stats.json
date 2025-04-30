@@ -77595,10 +77595,10 @@
   },
   "gpt-4.1-nano-2025-04-14": {
     "wins": 1,
-    "losses": 0,
+    "losses": 4,
     "ties": 0,
-    "apples_eaten": 1,
-    "elo": 1516.0,
+    "apples_eaten": 5,
+    "elo": 1455.1486175462628,
     "games": [
       {
         "game_id": "7687cd6f-9354-4da6-b92c-1fc768859747",
@@ -77609,15 +77609,71 @@
         "result": "won",
         "start_time": "2025-04-30T06:24:15.045390",
         "end_time": "2025-04-30T06:24:58.778432"
+      },
+      {
+        "game_id": "3e93ffc8-97fa-4416-978f-2ebef9ac77e2",
+        "my_score": 2,
+        "opponent_score": 0,
+        "opponent_model": "gpt-4.1-mini-2025-04-14",
+        "opponent_elo": 1501.4695015289756,
+        "result": "lost",
+        "start_time": "2025-04-30T06:54:34.183942",
+        "end_time": "2025-04-30T06:55:11.802804",
+        "death_info": {
+          "reason": "wall",
+          "round": 7
+        }
+      },
+      {
+        "game_id": "e3c9db32-89f5-4b80-b94a-8da2a527d3ce",
+        "my_score": 1,
+        "opponent_score": 1,
+        "opponent_model": "gpt-4.1-mini-2025-04-14",
+        "opponent_elo": 1517.3341586646084,
+        "result": "lost",
+        "start_time": "2025-04-30T07:09:39.635939",
+        "end_time": "2025-04-30T07:10:44.302276",
+        "death_info": {
+          "reason": "wall",
+          "round": 9
+        }
+      },
+      {
+        "game_id": "012c1387-e61c-4156-85b9-892490924b54",
+        "my_score": 0,
+        "opponent_score": 4,
+        "opponent_model": "gpt-4.1-mini-2025-04-14",
+        "opponent_elo": 1531.7429013908077,
+        "result": "lost",
+        "start_time": "2025-04-30T07:09:39.635574",
+        "end_time": "2025-04-30T07:10:54.090432",
+        "death_info": {
+          "reason": "body_collision",
+          "round": 10
+        }
+      },
+      {
+        "game_id": "2ebaedf9-a978-4da4-bf45-4161c23123be",
+        "my_score": 1,
+        "opponent_score": 5,
+        "opponent_model": "gpt-4.1-mini-2025-04-14",
+        "opponent_elo": 1544.8513824537372,
+        "result": "lost",
+        "start_time": "2025-04-30T07:09:39.636251",
+        "end_time": "2025-04-30T07:11:21.936684",
+        "death_info": {
+          "reason": "wall",
+          "round": 11
+        }
       }
     ]
   },
   "gpt-4.1-mini-2025-04-14": {
-    "wins": 0,
+    "wins": 4,
     "losses": 1,
     "ties": 0,
-    "apples_eaten": 2,
-    "elo": 1484.0,
+    "apples_eaten": 12,
+    "elo": 1544.8513824537372,
     "games": [
       {
         "game_id": "7687cd6f-9354-4da6-b92c-1fc768859747",
@@ -77632,6 +77688,46 @@
           "reason": "body_collision",
           "round": 5
         }
+      },
+      {
+        "game_id": "3e93ffc8-97fa-4416-978f-2ebef9ac77e2",
+        "my_score": 0,
+        "opponent_score": 2,
+        "opponent_model": "gpt-4.1-nano-2025-04-14",
+        "opponent_elo": 1498.5304984710244,
+        "result": "won",
+        "start_time": "2025-04-30T06:54:34.183942",
+        "end_time": "2025-04-30T06:55:11.802804"
+      },
+      {
+        "game_id": "e3c9db32-89f5-4b80-b94a-8da2a527d3ce",
+        "my_score": 1,
+        "opponent_score": 1,
+        "opponent_model": "gpt-4.1-nano-2025-04-14",
+        "opponent_elo": 1482.6658413353916,
+        "result": "won",
+        "start_time": "2025-04-30T07:09:39.635939",
+        "end_time": "2025-04-30T07:10:44.302276"
+      },
+      {
+        "game_id": "012c1387-e61c-4156-85b9-892490924b54",
+        "my_score": 4,
+        "opponent_score": 0,
+        "opponent_model": "gpt-4.1-nano-2025-04-14",
+        "opponent_elo": 1468.2570986091923,
+        "result": "won",
+        "start_time": "2025-04-30T07:09:39.635574",
+        "end_time": "2025-04-30T07:10:54.090432"
+      },
+      {
+        "game_id": "2ebaedf9-a978-4da4-bf45-4161c23123be",
+        "my_score": 5,
+        "opponent_score": 1,
+        "opponent_model": "gpt-4.1-nano-2025-04-14",
+        "opponent_elo": 1455.1486175462628,
+        "result": "won",
+        "start_time": "2025-04-30T07:09:39.636251",
+        "end_time": "2025-04-30T07:11:21.936684"
       }
     ]
   }

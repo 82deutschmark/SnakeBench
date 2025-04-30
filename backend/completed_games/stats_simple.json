@@ -621,22 +621,22 @@
   },
   "gpt-4.1-nano-2025-04-14": {
     "wins": 1,
-    "losses": 0,
+    "losses": 4,
     "ties": 0,
-    "apples_eaten": 1,
-    "elo": 1516.0,
+    "apples_eaten": 5,
+    "elo": 1455.1486175462628,
     "first_game_time": "2025-04-30T06:24:15.045390",
-    "last_game_time": "2025-04-30T06:24:15.045390",
-    "top_score": 1
+    "last_game_time": "2025-04-30T07:09:39.636251",
+    "top_score": 2
   },
   "gpt-4.1-mini-2025-04-14": {
-    "wins": 0,
+    "wins": 4,
     "losses": 1,
     "ties": 0,
-    "apples_eaten": 2,
-    "elo": 1484.0,
+    "apples_eaten": 12,
+    "elo": 1544.8513824537372,
     "first_game_time": "2025-04-30T06:24:15.045390",
-    "last_game_time": "2025-04-30T06:24:15.045390",
-    "top_score": 2
+    "last_game_time": "2025-04-30T07:09:39.636251",
+    "top_score": 5
   }
 }

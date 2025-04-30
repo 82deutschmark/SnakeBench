@@ -22139,5 +22139,33 @@
     "start_time": "2025-04-30T06:24:15.045390",
     "total_score": 3,
     "actual_rounds": 6
+  },
+  {
+    "game_id": "3e93ffc8-97fa-4416-978f-2ebef9ac77e2",
+    "filename": "snake_game_3e93ffc8-97fa-4416-978f-2ebef9ac77e2.json",
+    "start_time": "2025-04-30T06:54:34.183942",
+    "total_score": 2,
+    "actual_rounds": 8
+  },
+  {
+    "game_id": "e3c9db32-89f5-4b80-b94a-8da2a527d3ce",
+    "filename": "snake_game_e3c9db32-89f5-4b80-b94a-8da2a527d3ce.json",
+    "start_time": "2025-04-30T07:09:39.635939",
+    "total_score": 2,
+    "actual_rounds": 10
+  },
+  {
+    "game_id": "012c1387-e61c-4156-85b9-892490924b54",
+    "filename": "snake_game_012c1387-e61c-4156-85b9-892490924b54.json",
+    "start_time": "2025-04-30T07:09:39.635574",
+    "total_score": 4,
+    "actual_rounds": 11
+  },
+  {
+    "game_id": "2ebaedf9-a978-4da4-bf45-4161c23123be",
+    "filename": "snake_game_2ebaedf9-a978-4da4-bf45-4161c23123be.json",
+    "start_time": "2025-04-30T07:09:39.636251",
+    "total_score": 6,
+    "actual_rounds": 12
   }
 ]
