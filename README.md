@@ -6,7 +6,7 @@ LLM Snake Arena is a project that pits different Large Language Models (LLMs) ag
 
 ## Project Overview
 
-### Backend: Game Simulation (`backend/main.py`)
+### Backend: Game Simulation (`backend/main.py` & `backend/run_batch.py`)
 
 - **Snake & Game Mechanics:**
   - **Snake Representation:** Each snake is represented as a deque of board positions. The game handles moving the snake's head, updating the tail, and managing growth when an apple is eaten.
@@ -16,6 +16,12 @@ LLM Snake Arena is a project that pits different Large Language Models (LLMs) ag
 - **LLM-Powered Snake Control:**
   - **LLMPlayer Class:** For each snake, if controlled by an LLM, the game constructs a detailed prompt of the board state (including positions of all snakes and apples) and the last move's rationale. This prompt is sent to an LLM provider, which returns a recommendation for the next direction.
   - **Fallback Mechanism:** If the response from the LLM is unclear, the snake falls back to selecting a random valid move.
+
+- **Batch Simulation (`run_batch.py`):**
+  - Orchestrates running a target LLM against multiple opponent LLMs.
+  - Supports filtering opponents based on cost criteria defined in `backend/model_lists/model_list.yaml`.
+  - Uses Python's `concurrent.futures` for efficient, in-process parallel execution of simulations.
+  - Allows configuration of the number of simulations per matchup and the degree of parallelism.
 
 ### Frontend: Visualization & Dashboard (`frontend/src/app/page.tsx`)
 
@@ -28,81 +34,84 @@ LLM Snake Arena is a project that pits different Large Language Models (LLMs) ag
 
 ---
 
-## Command-Line & Batch Execution (from the original README)
+## Running Simulations
 
-The included instructions allow you to generate model pairs, simulate games, run games in parallel, and track Elo ratings:
+1.  **Run a Single Game:**
+    To run a one-off game between two specific models:
 
-1. **Generate Model Pairs:**
+    ```bash
+    cd backend
+    # Replace model names with valid IDs from model_list.yaml
+    python3 main.py --models gpt-4o-mini-2024-07-18 claude-3-haiku-20240307 
+    ```
 
-   ```bash
-   # Generate all possible matchups, 3 rounds each
-   python cli/generate_matchups.py --rounds 3
+    To use Ollama models (assuming they are configured in `model_list.yaml` with the `ollama-` prefix in their `name`), use the prefixed name:
 
-   # Same thing but with custom input and output files
-   python cli/generate_matchups.py --rounds 3 --input my_models.txt --output my_matchups.txt
+    ```bash
+    cd backend
+    python3 main.py --models ollama-llama3.2 ollama-llama3.3 
+    ```
+    You can also customize game parameters like `--width`, `--height`, `--max_rounds`, and `--num_apples`.
 
-   # Generate matchups for gemini-2.0-flash against all other models, 2 rounds each
-   python cli/generate_matchups.py --mode single --model gemini-2.0-flash --rounds 2
+2.  **Run Batch Simulations (Target Model vs. Others):**
+    To test a specific model against a pool of opponents, use the `run_batch.py` script.
 
-   # Same thing but with custom input and output files
-   python cli/generate_matchups.py --mode single --model gemini-2.0-flash --rounds 2 --input my_models.txt --output gpt4_matchups.txt
-   ```
+    ```bash
+    cd backend
 
-2. **Run a Single Game:**
+    # Basic usage: Run 'my-new-model' against all valid opponents 5 times each
+    python3 run_batch.py --target-model "my-new-model" --num-simulations 5
 
-   ```bash
-   cd backend
-   python3 main.py --models gpt-3.5-turbo-0125 claude-3-haiku-20240307
-   ```
+    # With cost filtering: Only run against opponents cheaper than $1.00/million output tokens
+    python3 run_batch.py --target-model "my-new-model" --num-simulations 5 --max-output-cost-per-million 1.0
 
-   to use ollama, add ollama- to the model name:
+    # Control parallelism: Limit to 8 concurrent simulations
+    python3 run_batch.py --target-model "my-new-model" --num-simulations 5 --max-workers 8
 
-   ```bash
-   cd backend
-   python3 main.py --models ollama-llama3.2 ollama-llama3.3 
-   ```
+    # Full example: Cost filtering and parallelism control
+    python3 run_batch.py --target-model "my-new-model" --num-simulations 5 --max-output-cost-per-million 1.0 --max-workers 8
+    ```
+    This script uses the pricing information in `backend/model_lists/model_list.yaml` for filtering. Models without valid pricing information will be skipped during filtering. Game parameters (`--width`, etc.) can also be passed to `run_batch.py`.
 
-3. **Run Many Games in Parallel:**
+3.  **Run Elo Tracker:**
+    After running simulations, update the Elo ratings based on the completed games:
 
-   ```bash
-   cd backend
-   parallel --colsep ' ' --jobs 30 --progress python3 main.py --models {1} {2} :::: model_lists/model_pairs.txt
-   ```
-
-4. **Run Elo Tracker:**
-
-   ```bash
-   cd backend
-   python3 elo_tracker.py completed_games --output completed_games
-   ```
+    ```bash
+    cd backend
+    python3 elo_tracker.py completed_games --output completed_games
+    ```
 
 ---
 
 ## Quick Start
 
-1. **Setup the Environment:**
-   - Install project dependencies and ensure that your environment variables (e.g., API keys for your LLM provider) are configured via the `.env` file.
+1.  **Setup the Environment:**
+    - Install project dependencies (`pip install -r requirements.txt` in `backend`).
+    - Ensure that your environment variables (e.g., API keys for your LLM provider) are configured via a `.env` file in the `backend` directory.
+    - Update `backend/model_lists/model_list.yaml` with the models you want to test and their pricing information.
 
-2. **Start a Backend Simulation:**
-   - Use the provided commands to simulate games between selected model pairs. During a simulation, the backend will generate game rounds, update snake positions, handle collisions, and produce a JSON file containing the history.
+2.  **Start Backend Simulations:**
+    - Use the `python3 main.py` command for single games or `python3 run_batch.py` for testing a model against multiple opponents. Simulations generate JSON files in `backend/completed_games/`.
 
-3. **Launch the Frontend Application:**
-   - Start the Next.js development server to see the leaderboard and replays.
-   ```bash
-   npm run dev
-   # or
-   yarn dev
-   # or
-   pnpm dev
-   # or
-   bun dev
-   ```
+3.  **Launch the Frontend Application:**
+    - Navigate to the `frontend` directory.
+    - Install dependencies (`npm install` or `yarn install`).
+    - Start the Next.js development server to see the leaderboard and replays.
+    ```bash
+    npm run dev
+    # or
+    yarn dev
+    # or
+    pnpm dev
+    # or
+    bun dev
+    ```
 
 ---
 
 ## Architecture Summary
 
-- **Backend (Python):** Contains the core game logic for simulating a snake game where each snake can be controlled by an LLM. It tracks game state, records round-by-round history, manages collisions and apple spawning, and decides game outcomes.
+- **Backend (Python):** Contains the core game logic (`main.py`) for simulating a snake game where each snake can be controlled by an LLM. It tracks game state, records round-by-round history, manages collisions and apple spawning, and decides game outcomes. A separate script (`run_batch.py`) handles running a target model against multiple opponents in parallel, with options for cost-based filtering.
   
 - **Frontend (Next.js):** Provides a visual dashboard for game results. It pulls data via APIs to render leaderboards and ASCII-based match replays clearly showing the state of the board.
 

@@ -11,74 +11,130 @@ models:
     api_type: 'responses'
     provider: 'openai'
     max_completion_tokens: 8000
+    pricing:
+      date: "2025-04-30"
+      input: 150.00
+      output: 600.00
 
   - name: 'gpt-4.5-preview-2025-02-27'
     model_name: 'gpt-4.5-preview-2025-02-27'
     provider: 'openai'
     max_completion_tokens: 8000
+    pricing:
+      date: "2025-04-30"
+      input: 75.00
+      output: 150.00
 
   - name: 'gpt-4o-mini-2024-07-18'
     model_name: 'gpt-4o-mini-2024-07-18'
     provider: 'openai'
     max_completion_tokens: 8000
+    pricing:
+      date: "2025-04-30"
+      input: 0.60
+      output: 2.40
 
   - name: 'gpt-4o-2024-11-20'
     model_name: 'gpt-4o-2024-11-20'
     provider: 'openai'
     max_completion_tokens: 8000
+    pricing:
+      date: "2025-04-30"
+      input: 2.50
+      output: 10.00
 
   - name: 'gpt-4o-2024-08-06'
     model_name: 'gpt-4o-2024-08-06'
     provider: 'openai'
     max_completion_tokens: 8000
+    pricing:
+      date: "2025-04-30"
+      input: 2.50
+      output: 10.00
 
   - name: 'gpt-4-turbo-2024-04-09'
     model_name: 'gpt-4-turbo-2024-04-09'
     provider: 'openai'
     max_completion_tokens: 8000
+    pricing:
+      date: "2025-04-30"
+      input: 10.00
+      output: 30.00
 
   - name: 'gpt-4-0613'
     model_name: 'gpt-4-0613'
     provider: 'openai'
     max_completion_tokens: 8000
+    pricing:
+      date: "2025-04-30"
+      input: 30.00
+      output: 60.00
 
   - name: 'gpt-3.5-turbo-0125'
     model_name: 'gpt-3.5-turbo-0125'
     provider: 'openai'
     max_completion_tokens: 4096
+    pricing:
+      date: "2025-04-30"
+      input: 0.50
+      output: 1.50
 
   - name: 'o1-mini'
     model_name: 'o1-mini'
     provider: 'openai'
     max_completion_tokens: 8000
+    pricing:
+      date: "2025-04-30"
+      input: 1.10
+      output: 4.40
 
   - name: 'o3-mini'
     model_name: 'o3-mini'
     provider: 'openai'
     max_completion_tokens: 8000
+    pricing:
+      date: "2025-04-30"
+      input: 1.10
+      output: 4.40
 
   - name: 'o3-mini-2025-01-31-low'
     model_name: 'o3-mini-2025-01-31'
     reasoning_effort: 'low'
     provider: 'openai'
     max_completion_tokens: 100000
+    pricing:
+      date: "2025-04-30"
+      input: 1.10
+      output: 4.40
 
   - name: 'o3-mini-2025-01-31-medium'
     model_name: 'o3-mini-2025-01-31'
     reasoning_effort: 'medium'
     provider: 'openai'
     max_completion_tokens: 100000
+    pricing:
+      date: "2025-04-30"
+      input: 1.10
+      output: 4.40
 
   - name: 'o3-mini-2025-01-31-high'
     model_name: 'o3-mini-2025-01-31'
     reasoning_effort: 'high'
     provider: 'openai'
     max_completion_tokens: 100000
+    pricing:
+      date: "2025-04-30"
+      input: 1.10
+      output: 4.40
 
   - name: 'gpt-4.1-2025-04-14'
     model_name: 'gpt-4.1-2025-04-14'
     provider: 'openai'
     max_completion_tokens: 32768
+    pricing:
+      date: "2025-04-30"
+      input: 2.00
+      output: 8.00
 
   - name: 'gpt-4.1-mini-2025-04-14'
     model_name: 'gpt-4.1-mini-2025-04-14'
@@ -98,6 +154,36 @@ models:
       input: 0.10 
       output: 0.40
 
+  - name: 'o4-mini-2025-04-16-low'
+    model_name: 'o4-mini-2025-04-16'
+    reasoning_effort: 'low'
+    provider: 'openai'
+    max_completion_tokens: 100000
+    pricing:
+      date: "2025-04-28"
+      input: 1.10 
+      output: 4.40
+
+  - name: 'o4-mini-2025-04-16-medium'
+    model_name: 'o4-mini-2025-04-16'
+    reasoning_effort: 'medium'
+    provider: 'openai'
+    max_completion_tokens: 100000
+    pricing:
+      date: "2025-04-28"
+      input: 1.10 
+      output: 4.40
+
+  - name: 'o4-mini-2025-04-16-high'
+    model_name: 'o4-mini-2025-04-16'
+    reasoning_effort: 'high'
+    provider: 'openai'
+    max_completion_tokens: 100000
+    pricing:
+      date: "2025-04-28"
+      input: 1.10 
+      output: 4.40
+      
 
 ####################
 #### Anthropic #####

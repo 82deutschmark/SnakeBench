@@ -22167,5 +22167,551 @@
     "start_time": "2025-04-30T07:09:39.636251",
     "total_score": 6,
     "actual_rounds": 12
+  },
+  {
+    "game_id": "8db4e28f-d596-45ce-b4d4-434dab7bf922",
+    "filename": "snake_game_8db4e28f-d596-45ce-b4d4-434dab7bf922.json",
+    "start_time": "2025-04-30T08:15:38.877476",
+    "total_score": 0,
+    "actual_rounds": 2
+  },
+  {
+    "game_id": "e48b7396-3c14-4692-a908-645c1de8b458",
+    "filename": "snake_game_e48b7396-3c14-4692-a908-645c1de8b458.json",
+    "start_time": "2025-04-30T08:15:38.738240",
+    "total_score": 0,
+    "actual_rounds": 1
+  },
+  {
+    "game_id": "1ee20911-3fd7-4433-9cf3-774a4af9f1f7",
+    "filename": "snake_game_1ee20911-3fd7-4433-9cf3-774a4af9f1f7.json",
+    "start_time": "2025-04-30T08:15:38.919648",
+    "total_score": 2,
+    "actual_rounds": 4
+  },
+  {
+    "game_id": "dbba8c42-051a-49d6-bfd0-11d9123486d3",
+    "filename": "snake_game_dbba8c42-051a-49d6-bfd0-11d9123486d3.json",
+    "start_time": "2025-04-30T08:15:38.736587",
+    "total_score": 1,
+    "actual_rounds": 7
+  },
+  {
+    "game_id": "89c6e527-c8d8-4044-9134-5db3545aae86",
+    "filename": "snake_game_89c6e527-c8d8-4044-9134-5db3545aae86.json",
+    "start_time": "2025-04-30T08:15:38.733659",
+    "total_score": 1,
+    "actual_rounds": 3
+  },
+  {
+    "game_id": "0d57b442-10f5-4848-869c-0bd429f93fa9",
+    "filename": "snake_game_0d57b442-10f5-4848-869c-0bd429f93fa9.json",
+    "start_time": "2025-04-30T08:15:38.736991",
+    "total_score": 1,
+    "actual_rounds": 9
+  },
+  {
+    "game_id": "a971198a-0566-41d8-adfe-38534069a1c7",
+    "filename": "snake_game_a971198a-0566-41d8-adfe-38534069a1c7.json",
+    "start_time": "2025-04-30T08:15:38.894607",
+    "total_score": 0,
+    "actual_rounds": 3
+  },
+  {
+    "game_id": "bdb0a283-d2ec-4cb5-b7a4-e7e04146156f",
+    "filename": "snake_game_bdb0a283-d2ec-4cb5-b7a4-e7e04146156f.json",
+    "start_time": "2025-04-30T08:15:38.921200",
+    "total_score": 2,
+    "actual_rounds": 6
+  },
+  {
+    "game_id": "4df02ef9-057f-4063-82f2-9b4aa02cba0d",
+    "filename": "snake_game_4df02ef9-057f-4063-82f2-9b4aa02cba0d.json",
+    "start_time": "2025-04-30T08:15:38.922944",
+    "total_score": 3,
+    "actual_rounds": 6
+  },
+  {
+    "game_id": "13a5ed45-2fb8-4080-ae0c-8e07fd338518",
+    "filename": "snake_game_13a5ed45-2fb8-4080-ae0c-8e07fd338518.json",
+    "start_time": "2025-04-30T08:15:38.897847",
+    "total_score": 0,
+    "actual_rounds": 3
+  },
+  {
+    "game_id": "274f02d1-31e9-4460-a0e9-88aa4cf2c958",
+    "filename": "snake_game_274f02d1-31e9-4460-a0e9-88aa4cf2c958.json",
+    "start_time": "2025-04-30T08:15:38.734337",
+    "total_score": 1,
+    "actual_rounds": 5
+  },
+  {
+    "game_id": "b49aed34-2b0b-4289-8b65-19ccf6441c90",
+    "filename": "snake_game_b49aed34-2b0b-4289-8b65-19ccf6441c90.json",
+    "start_time": "2025-04-30T08:15:38.735298",
+    "total_score": 1,
+    "actual_rounds": 3
+  },
+  {
+    "game_id": "a4932177-cbb5-42cc-b2a1-3ed730f8cc2f",
+    "filename": "snake_game_a4932177-cbb5-42cc-b2a1-3ed730f8cc2f.json",
+    "start_time": "2025-04-30T08:15:38.778780",
+    "total_score": 2,
+    "actual_rounds": 6
+  },
+  {
+    "game_id": "0888ef43-2c31-4de3-af9b-61096651f509",
+    "filename": "snake_game_0888ef43-2c31-4de3-af9b-61096651f509.json",
+    "start_time": "2025-04-30T08:15:38.756275",
+    "total_score": 1,
+    "actual_rounds": 5
+  },
+  {
+    "game_id": "0cf5dbd0-2fff-4f62-800e-29e11da2402a",
+    "filename": "snake_game_0cf5dbd0-2fff-4f62-800e-29e11da2402a.json",
+    "start_time": "2025-04-30T08:15:38.906743",
+    "total_score": 2,
+    "actual_rounds": 7
+  },
+  {
+    "game_id": "f27d0b75-0032-4b5f-9edc-df5d00e01d1c",
+    "filename": "snake_game_f27d0b75-0032-4b5f-9edc-df5d00e01d1c.json",
+    "start_time": "2025-04-30T08:15:38.884098",
+    "total_score": 2,
+    "actual_rounds": 10
+  },
+  {
+    "game_id": "552ef35d-2d5f-4c0a-9b7a-2e8ed64ac0d8",
+    "filename": "snake_game_552ef35d-2d5f-4c0a-9b7a-2e8ed64ac0d8.json",
+    "start_time": "2025-04-30T08:15:38.899434",
+    "total_score": 3,
+    "actual_rounds": 10
+  },
+  {
+    "game_id": "19bce7f4-39e3-4db5-8298-9c4eacb3332f",
+    "filename": "snake_game_19bce7f4-39e3-4db5-8298-9c4eacb3332f.json",
+    "start_time": "2025-04-30T08:15:45.464800",
+    "total_score": 2,
+    "actual_rounds": 3
+  },
+  {
+    "game_id": "acfeb1ed-dff3-4a10-b1ee-ac3bb7c9bb21",
+    "filename": "snake_game_acfeb1ed-dff3-4a10-b1ee-ac3bb7c9bb21.json",
+    "start_time": "2025-04-30T08:15:38.734052",
+    "total_score": 1,
+    "actual_rounds": 8
+  },
+  {
+    "game_id": "ada5b1c7-4fad-456a-b76d-9e6064c8c0b3",
+    "filename": "snake_game_ada5b1c7-4fad-456a-b76d-9e6064c8c0b3.json",
+    "start_time": "2025-04-30T08:15:38.789641",
+    "total_score": 3,
+    "actual_rounds": 11
+  },
+  {
+    "game_id": "17268b19-5251-4e54-8d60-c02b969ed1d6",
+    "filename": "snake_game_17268b19-5251-4e54-8d60-c02b969ed1d6.json",
+    "start_time": "2025-04-30T08:15:38.734436",
+    "total_score": 2,
+    "actual_rounds": 7
+  },
+  {
+    "game_id": "9183533a-e111-4b2b-a312-e15fee3a63a9",
+    "filename": "snake_game_9183533a-e111-4b2b-a312-e15fee3a63a9.json",
+    "start_time": "2025-04-30T08:15:38.769832",
+    "total_score": 2,
+    "actual_rounds": 8
+  },
+  {
+    "game_id": "5f07be0e-b689-448b-923d-6a94b6b7591b",
+    "filename": "snake_game_5f07be0e-b689-448b-923d-6a94b6b7591b.json",
+    "start_time": "2025-04-30T08:15:38.925968",
+    "total_score": 3,
+    "actual_rounds": 11
+  },
+  {
+    "game_id": "177d9d02-61ee-4f5d-bd52-c6bcbbc1f1d3",
+    "filename": "snake_game_177d9d02-61ee-4f5d-bd52-c6bcbbc1f1d3.json",
+    "start_time": "2025-04-30T08:15:38.734876",
+    "total_score": 1,
+    "actual_rounds": 9
+  },
+  {
+    "game_id": "1c75ab15-bf07-4363-9980-65c83dfe629c",
+    "filename": "snake_game_1c75ab15-bf07-4363-9980-65c83dfe629c.json",
+    "start_time": "2025-04-30T08:15:38.927647",
+    "total_score": 5,
+    "actual_rounds": 10
+  },
+  {
+    "game_id": "cdb92a1f-daa0-45c0-901d-0817e4836efd",
+    "filename": "snake_game_cdb92a1f-daa0-45c0-901d-0817e4836efd.json",
+    "start_time": "2025-04-30T08:15:38.886828",
+    "total_score": 2,
+    "actual_rounds": 8
+  },
+  {
+    "game_id": "1398caf4-3ce4-456b-81dc-5ebe79ec130f",
+    "filename": "snake_game_1398caf4-3ce4-456b-81dc-5ebe79ec130f.json",
+    "start_time": "2025-04-30T08:15:38.735092",
+    "total_score": 3,
+    "actual_rounds": 11
+  },
+  {
+    "game_id": "932ca510-6680-406e-a826-615f72f7f231",
+    "filename": "snake_game_932ca510-6680-406e-a826-615f72f7f231.json",
+    "start_time": "2025-04-30T08:15:38.908839",
+    "total_score": 4,
+    "actual_rounds": 15
+  },
+  {
+    "game_id": "e6099a35-e792-4f57-9f6b-ea73b1c89014",
+    "filename": "snake_game_e6099a35-e792-4f57-9f6b-ea73b1c89014.json",
+    "start_time": "2025-04-30T08:15:38.891910",
+    "total_score": 2,
+    "actual_rounds": 5
+  },
+  {
+    "game_id": "9390e452-1ae2-41d6-8b76-53bd1ef1754e",
+    "filename": "snake_game_9390e452-1ae2-41d6-8b76-53bd1ef1754e.json",
+    "start_time": "2025-04-30T08:15:38.736268",
+    "total_score": 2,
+    "actual_rounds": 9
+  },
+  {
+    "game_id": "735603ed-d96e-444f-9364-9afa5e03e153",
+    "filename": "snake_game_735603ed-d96e-444f-9364-9afa5e03e153.json",
+    "start_time": "2025-04-30T08:15:38.742495",
+    "total_score": 5,
+    "actual_rounds": 11
+  },
+  {
+    "game_id": "b2461806-1fee-44be-bf04-d2f7003bcd0e",
+    "filename": "snake_game_b2461806-1fee-44be-bf04-d2f7003bcd0e.json",
+    "start_time": "2025-04-30T08:15:38.889687",
+    "total_score": 2,
+    "actual_rounds": 9
+  },
+  {
+    "game_id": "615f5f98-c9c3-4723-bffd-8148ac2731c7",
+    "filename": "snake_game_615f5f98-c9c3-4723-bffd-8148ac2731c7.json",
+    "start_time": "2025-04-30T08:15:38.932358",
+    "total_score": 2,
+    "actual_rounds": 13
+  },
+  {
+    "game_id": "4a0fb04f-cde6-4bc7-a640-7831302e5654",
+    "filename": "snake_game_4a0fb04f-cde6-4bc7-a640-7831302e5654.json",
+    "start_time": "2025-04-30T08:15:38.735854",
+    "total_score": 2,
+    "actual_rounds": 10
+  },
+  {
+    "game_id": "a513afc4-5cc3-45e7-9bfd-a9729143c298",
+    "filename": "snake_game_a513afc4-5cc3-45e7-9bfd-a9729143c298.json",
+    "start_time": "2025-04-30T08:15:38.885586",
+    "total_score": 3,
+    "actual_rounds": 10
+  },
+  {
+    "game_id": "182a7c5c-5ff5-43d2-988b-52ab0236fdb3",
+    "filename": "snake_game_182a7c5c-5ff5-43d2-988b-52ab0236fdb3.json",
+    "start_time": "2025-04-30T08:15:38.933935",
+    "total_score": 3,
+    "actual_rounds": 7
+  },
+  {
+    "game_id": "120b8bae-134b-4bf8-9625-c6f8495ef76c",
+    "filename": "snake_game_120b8bae-134b-4bf8-9625-c6f8495ef76c.json",
+    "start_time": "2025-04-30T08:15:38.890483",
+    "total_score": 3,
+    "actual_rounds": 7
+  },
+  {
+    "game_id": "df1ed7e6-3f13-45ac-944e-fcc3106383f4",
+    "filename": "snake_game_df1ed7e6-3f13-45ac-944e-fcc3106383f4.json",
+    "start_time": "2025-04-30T08:15:38.891579",
+    "total_score": 3,
+    "actual_rounds": 10
+  },
+  {
+    "game_id": "65f0e406-01e1-4623-8ae4-c59f9570ed68",
+    "filename": "snake_game_65f0e406-01e1-4623-8ae4-c59f9570ed68.json",
+    "start_time": "2025-04-30T08:15:38.893174",
+    "total_score": 5,
+    "actual_rounds": 15
+  },
+  {
+    "game_id": "fb48f9dc-e095-4686-88c2-d6d3bae8fc04",
+    "filename": "snake_game_fb48f9dc-e095-4686-88c2-d6d3bae8fc04.json",
+    "start_time": "2025-04-30T08:24:26.977411",
+    "total_score": 1,
+    "actual_rounds": 2
+  },
+  {
+    "game_id": "26b59e5c-e71b-4e51-9e6b-4b40b9153cce",
+    "filename": "snake_game_26b59e5c-e71b-4e51-9e6b-4b40b9153cce.json",
+    "start_time": "2025-04-30T08:24:26.789218",
+    "total_score": 1,
+    "actual_rounds": 3
+  },
+  {
+    "game_id": "3ec7722d-35cd-4221-8b8f-7c78818d8f55",
+    "filename": "snake_game_3ec7722d-35cd-4221-8b8f-7c78818d8f55.json",
+    "start_time": "2025-04-30T08:24:26.796311",
+    "total_score": 1,
+    "actual_rounds": 3
+  },
+  {
+    "game_id": "7538abb4-15a1-4539-a345-f3f847f6da41",
+    "filename": "snake_game_7538abb4-15a1-4539-a345-f3f847f6da41.json",
+    "start_time": "2025-04-30T08:24:26.976510",
+    "total_score": 0,
+    "actual_rounds": 3
+  },
+  {
+    "game_id": "c6ed55c4-54e5-4d58-87ae-0956f332c415",
+    "filename": "snake_game_c6ed55c4-54e5-4d58-87ae-0956f332c415.json",
+    "start_time": "2025-04-30T08:24:26.978226",
+    "total_score": 2,
+    "actual_rounds": 4
+  },
+  {
+    "game_id": "5f9d30f6-4e6b-4844-97de-2601073e9c7d",
+    "filename": "snake_game_5f9d30f6-4e6b-4844-97de-2601073e9c7d.json",
+    "start_time": "2025-04-30T08:24:26.788629",
+    "total_score": 0,
+    "actual_rounds": 8
+  },
+  {
+    "game_id": "528366ee-adca-4b61-9173-57b9748a959a",
+    "filename": "snake_game_528366ee-adca-4b61-9173-57b9748a959a.json",
+    "start_time": "2025-04-30T08:24:26.793808",
+    "total_score": 3,
+    "actual_rounds": 5
+  },
+  {
+    "game_id": "196a34ec-4706-4e52-b204-bc224c265c3b",
+    "filename": "snake_game_196a34ec-4706-4e52-b204-bc224c265c3b.json",
+    "start_time": "2025-04-30T08:24:26.971712",
+    "total_score": 1,
+    "actual_rounds": 5
+  },
+  {
+    "game_id": "ed45eee8-3053-4057-a82c-497fa0079a35",
+    "filename": "snake_game_ed45eee8-3053-4057-a82c-497fa0079a35.json",
+    "start_time": "2025-04-30T08:24:26.788373",
+    "total_score": 5,
+    "actual_rounds": 11
+  },
+  {
+    "game_id": "21eefeb6-1c4c-434d-84ff-13aeb79a9b83",
+    "filename": "snake_game_21eefeb6-1c4c-434d-84ff-13aeb79a9b83.json",
+    "start_time": "2025-04-30T08:24:26.977701",
+    "total_score": 5,
+    "actual_rounds": 16
+  },
+  {
+    "game_id": "9f1290b7-4877-482b-83ee-9d48adfb2631",
+    "filename": "snake_game_9f1290b7-4877-482b-83ee-9d48adfb2631.json",
+    "start_time": "2025-04-30T08:24:26.786041",
+    "total_score": 5,
+    "actual_rounds": 14
+  },
+  {
+    "game_id": "933ded2e-5b46-4906-81c8-d2568a45d53a",
+    "filename": "snake_game_933ded2e-5b46-4906-81c8-d2568a45d53a.json",
+    "start_time": "2025-04-30T08:24:26.973721",
+    "total_score": 10,
+    "actual_rounds": 17
+  },
+  {
+    "game_id": "57e5573b-ca68-4c51-a1ae-6e688a230c47",
+    "filename": "snake_game_57e5573b-ca68-4c51-a1ae-6e688a230c47.json",
+    "start_time": "2025-04-30T08:24:26.975435",
+    "total_score": 9,
+    "actual_rounds": 20
+  },
+  {
+    "game_id": "8f5db39b-532c-40e0-8bb5-0b10f25c6af1",
+    "filename": "snake_game_8f5db39b-532c-40e0-8bb5-0b10f25c6af1.json",
+    "start_time": "2025-04-30T08:24:26.787632",
+    "total_score": 2,
+    "actual_rounds": 9
+  },
+  {
+    "game_id": "53279f6b-27d1-4546-aec2-372ccb9ab814",
+    "filename": "snake_game_53279f6b-27d1-4546-aec2-372ccb9ab814.json",
+    "start_time": "2025-04-30T08:24:26.799842",
+    "total_score": 10,
+    "actual_rounds": 20
+  },
+  {
+    "game_id": "f3b901c5-10d9-48fb-861d-18760c4a5f53",
+    "filename": "snake_game_f3b901c5-10d9-48fb-861d-18760c4a5f53.json",
+    "start_time": "2025-04-30T08:24:26.785420",
+    "total_score": 4,
+    "actual_rounds": 18
+  },
+  {
+    "game_id": "6649660d-97d1-4d17-8fb1-149c67f2af61",
+    "filename": "snake_game_6649660d-97d1-4d17-8fb1-149c67f2af61.json",
+    "start_time": "2025-04-30T08:24:26.822483",
+    "total_score": 6,
+    "actual_rounds": 11
+  },
+  {
+    "game_id": "6236ed0d-710a-464b-8047-567deec69c31",
+    "filename": "snake_game_6236ed0d-710a-464b-8047-567deec69c31.json",
+    "start_time": "2025-04-30T08:24:26.788116",
+    "total_score": 6,
+    "actual_rounds": 12
+  },
+  {
+    "game_id": "ebc7669f-ade7-42c0-b9af-df440d221f95",
+    "filename": "snake_game_ebc7669f-ade7-42c0-b9af-df440d221f95.json",
+    "start_time": "2025-04-30T08:24:26.791678",
+    "total_score": 4,
+    "actual_rounds": 11
+  },
+  {
+    "game_id": "4d636475-462c-4988-aee6-7caa5f8a8f51",
+    "filename": "snake_game_4d636475-462c-4988-aee6-7caa5f8a8f51.json",
+    "start_time": "2025-04-30T08:24:26.786329",
+    "total_score": 6,
+    "actual_rounds": 14
+  },
+  {
+    "game_id": "68dbb073-cb8a-49c0-a63b-4c75a578a0ba",
+    "filename": "snake_game_68dbb073-cb8a-49c0-a63b-4c75a578a0ba.json",
+    "start_time": "2025-04-30T08:24:26.959335",
+    "total_score": 4,
+    "actual_rounds": 11
+  },
+  {
+    "game_id": "35188c0f-229d-4322-a6f7-481c173b12a3",
+    "filename": "snake_game_35188c0f-229d-4322-a6f7-481c173b12a3.json",
+    "start_time": "2025-04-30T08:24:26.986135",
+    "total_score": 5,
+    "actual_rounds": 16
+  },
+  {
+    "game_id": "dd43e97d-dc3d-4105-ac6e-f97923316d81",
+    "filename": "snake_game_dd43e97d-dc3d-4105-ac6e-f97923316d81.json",
+    "start_time": "2025-04-30T08:24:26.786994",
+    "total_score": 8,
+    "actual_rounds": 17
+  },
+  {
+    "game_id": "f118c021-a1e5-4610-887c-d4230ce0a7b2",
+    "filename": "snake_game_f118c021-a1e5-4610-887c-d4230ce0a7b2.json",
+    "start_time": "2025-04-30T08:24:26.787238",
+    "total_score": 7,
+    "actual_rounds": 17
+  },
+  {
+    "game_id": "f4bc92af-ebdf-438b-9f21-7206bb0fb633",
+    "filename": "snake_game_f4bc92af-ebdf-438b-9f21-7206bb0fb633.json",
+    "start_time": "2025-04-30T08:24:26.823652",
+    "total_score": 4,
+    "actual_rounds": 13
+  },
+  {
+    "game_id": "e308f1f7-abcf-4a43-b96b-5795639d8cd2",
+    "filename": "snake_game_e308f1f7-abcf-4a43-b96b-5795639d8cd2.json",
+    "start_time": "2025-04-30T08:24:26.785521",
+    "total_score": 12,
+    "actual_rounds": 33
+  },
+  {
+    "game_id": "faf12f82-193c-4f35-9b8f-46660949de70",
+    "filename": "snake_game_faf12f82-193c-4f35-9b8f-46660949de70.json",
+    "start_time": "2025-04-30T08:24:26.786545",
+    "total_score": 12,
+    "actual_rounds": 20
+  },
+  {
+    "game_id": "85bf1e5b-b6ec-4bbb-87ec-ebc4d8dd7339",
+    "filename": "snake_game_85bf1e5b-b6ec-4bbb-87ec-ebc4d8dd7339.json",
+    "start_time": "2025-04-30T08:24:26.961276",
+    "total_score": 9,
+    "actual_rounds": 19
+  },
+  {
+    "game_id": "ba90a9ce-bb2c-41ab-93fc-998a116d14ef",
+    "filename": "snake_game_ba90a9ce-bb2c-41ab-93fc-998a116d14ef.json",
+    "start_time": "2025-04-30T08:24:38.408628",
+    "total_score": 3,
+    "actual_rounds": 11
+  },
+  {
+    "game_id": "a72c5c2f-3e77-49a2-940a-183d8b988227",
+    "filename": "snake_game_a72c5c2f-3e77-49a2-940a-183d8b988227.json",
+    "start_time": "2025-04-30T08:24:26.790386",
+    "total_score": 9,
+    "actual_rounds": 23
+  },
+  {
+    "game_id": "9b74a843-46b3-4b38-a279-1ae6ffa596f7",
+    "filename": "snake_game_9b74a843-46b3-4b38-a279-1ae6ffa596f7.json",
+    "start_time": "2025-04-30T08:24:26.984992",
+    "total_score": 15,
+    "actual_rounds": 26
+  },
+  {
+    "game_id": "e202eaa8-a8ae-41fc-85e9-167415fa7b85",
+    "filename": "snake_game_e202eaa8-a8ae-41fc-85e9-167415fa7b85.json",
+    "start_time": "2025-04-30T08:24:26.983120",
+    "total_score": 24,
+    "actual_rounds": 39
+  },
+  {
+    "game_id": "2f12a75a-3c9a-487b-a1c0-780a26076c61",
+    "filename": "snake_game_2f12a75a-3c9a-487b-a1c0-780a26076c61.json",
+    "start_time": "2025-04-30T08:24:26.813747",
+    "total_score": 23,
+    "actual_rounds": 45
+  },
+  {
+    "game_id": "938efa0e-8570-403e-bee6-3423d0c72050",
+    "filename": "snake_game_938efa0e-8570-403e-bee6-3423d0c72050.json",
+    "start_time": "2025-04-30T08:24:26.792787",
+    "total_score": 30,
+    "actual_rounds": 61
+  },
+  {
+    "game_id": "4122dc62-07c0-43ed-bd1f-14c2a6c8ef45",
+    "filename": "snake_game_4122dc62-07c0-43ed-bd1f-14c2a6c8ef45.json",
+    "start_time": "2025-04-30T08:24:40.110506",
+    "total_score": 26,
+    "actual_rounds": 50
+  },
+  {
+    "game_id": "bf3d97e4-5dbe-4f60-9dd0-06d044303d2e",
+    "filename": "snake_game_bf3d97e4-5dbe-4f60-9dd0-06d044303d2e.json",
+    "start_time": "2025-04-30T08:24:26.837707",
+    "total_score": 24,
+    "actual_rounds": 36
+  },
+  {
+    "game_id": "3e4f1fcd-a63c-4347-9c8f-098ee540847b",
+    "filename": "snake_game_3e4f1fcd-a63c-4347-9c8f-098ee540847b.json",
+    "start_time": "2025-04-30T08:24:26.992613",
+    "total_score": 44,
+    "actual_rounds": 92
+  },
+  {
+    "game_id": "7b154e48-8060-4833-b0a6-d381bc64cbc0",
+    "filename": "snake_game_7b154e48-8060-4833-b0a6-d381bc64cbc0.json",
+    "start_time": "2025-04-30T08:24:26.953190",
+    "total_score": 31,
+    "actual_rounds": 59
+  },
+  {
+    "game_id": "1277a289-cafd-4a8e-add5-c4ea2c0d0ef8",
+    "filename": "snake_game_1277a289-cafd-4a8e-add5-c4ea2c0d0ef8.json",
+    "start_time": "2025-04-30T08:24:26.874025",
+    "total_score": 35,
+    "actual_rounds": 74
   }
 ]
