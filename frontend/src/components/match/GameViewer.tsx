@@ -203,7 +203,7 @@ export default function GameViewer({
           className="text-sm text-gray-500 flex items-center gap-2 font-mono"
           onClick={copyGameId}
         >
-          <span>Game ID: {gameData.metadata.game_id}</span>
+          <span>Match ID: {gameData.metadata.game_id}</span>
           <Copy className="h-4 w-4" />
         </Button>
       </div>

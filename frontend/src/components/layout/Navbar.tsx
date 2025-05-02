@@ -7,7 +7,10 @@ export default function Navbar() {
         <div className="flex justify-between h-16">
           <div className="flex">
             <div className="flex-shrink-0 flex items-center">
-              <Link href="/" className="text-2xl font-press-start text-gray-900">🐍 SnakeBench</Link>
+              <Link href="/" className="inline-flex items-baseline text-2xl font-press-start text-gray-900">
+                <span className="relative -top-1 text-3xl mr-2">🐍</span>
+                <span>SnakeBench</span>
+              </Link>
             </div>
             <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
               <a
