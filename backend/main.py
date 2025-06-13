@@ -400,7 +400,6 @@ class SnakeGame:
 
         self.record_history()
 
-        # The rest of your original code remains the same ...
         # 2) Compute new heads
         new_heads: Dict[str, Optional[Tuple[int,int]]] = {}
         for sid, move_data in round_moves.items():

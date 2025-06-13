@@ -261,6 +261,15 @@ models:
       input: 3.00
       output: 15.00
 
+  - name: 'claude-sonnet-4-20250514'
+    model_name: 'claude-sonnet-4-20250514'
+    provider: 'anthropic'
+    max_tokens: 64000
+    pricing:
+      date: "2024-07-26"
+      input: 3.00
+      output: 15.00
+
 ################
 ### Together ###
 ################
