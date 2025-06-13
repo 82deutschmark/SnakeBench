@@ -400,136 +400,140 @@ class SnakeGame:
 
         self.record_history()
 
-        # 2) Compute new heads
-        new_heads: Dict[str, Optional[Tuple[int,int]]] = {}
+        # 2) Compute the intended new head for every snake
+        new_heads: Dict[str, Optional[Tuple[int, int]]] = {}
         for sid, move_data in round_moves.items():
             snake = self.snakes[sid]
             if not snake.alive or move_data is None:
                 new_heads[sid] = None
                 continue
 
-            move = move_data["move"]
             hx, hy = snake.head
-            if move == UP:
-                hy += 1
-            elif move == DOWN:
-                hy -= 1
-            elif move == LEFT:
-                hx -= 1
-            elif move == RIGHT:
-                hx += 1
+            move = move_data["move"]
+            if move == UP:       hy += 1
+            elif move == DOWN:   hy -= 1
+            elif move == LEFT:   hx -= 1
+            elif move == RIGHT:  hx += 1
             new_heads[sid] = (hx, hy)
 
-        # 3) Check collisions: walls, bodies (including tails), and head-to-head collisions.
-        # First, build a dictionary for head-to-head collisions.
-        cell_counts: Dict[Tuple[int,int], List[str]] = {}
-        for sid, head_pos in new_heads.items():
-            if head_pos is not None:
-                cell_counts.setdefault(head_pos, []).append(sid)
+        # --------------------------------------------------
+        # 3) Build the *proposed* board after every snake moves
+        # --------------------------------------------------
+        eats_apple: Dict[str, bool] = {}
+        proposed_bodies: Dict[str, List[Tuple[int, int]]] = {}
 
-        # Check wall collisions and collisions with any snake body (including tails).
-        # Here, we use the current board state (i.e. each snake's full positions list) as the source of occupied cells.
-        for sid, head_pos in new_heads.items():
-            snake = self.snakes[sid]
-            if not snake.alive or head_pos is None:
+        for sid, snake in self.snakes.items():
+            head = new_heads.get(sid)
+            alive_and_moved = snake.alive and head is not None
+            eats_apple[sid] = alive_and_moved and head in self.apples
+
+            if not alive_and_moved:
+                proposed_bodies[sid] = list(snake.positions)
                 continue
 
-            x, y = head_pos
-            # 3a. Wall collision:
+            original_body = list(snake.positions)
+            if eats_apple[sid]:
+                # grow: keep the tail
+                new_body = [head] + original_body
+            else:
+                # normal move: drop the tail
+                new_body = [head] + original_body[:-1]
+
+            proposed_bodies[sid] = new_body
+
+        # --------------------------------------------------
+        # 4) Collision detection on that proposed board
+        # --------------------------------------------------
+        # a) wall collisions
+        for sid, head in new_heads.items():
+            snake = self.snakes[sid]
+            if not snake.alive or head is None:
+                continue
+            x, y = head
             if x < 0 or x >= self.width or y < 0 or y >= self.height:
                 snake.alive = False
-                snake.death_reason = 'wall'
-                snake.death_round = self.round_number
-                continue
+                snake.death_reason = "wall"
+                snake.death_round  = self.round_number
 
-            # 3b. Collision with any snake's body, including tails.
-            # (Note: We do not exclude any part of the body now.)
-            for other_id, other_snake in self.snakes.items():
-                # If the new head lands on any occupied cell from the current state, it's a collision.
-                if head_pos in other_snake.positions:
+        # b) head-to-head collisions
+        head_counts: Dict[Tuple[int, int], List[str]] = {}
+        for sid, head in new_heads.items():
+            if head is not None and self.snakes[sid].alive:
+                head_counts.setdefault(head, []).append(sid)
+
+        for same_cell_snakes in head_counts.values():
+            if len(same_cell_snakes) > 1:
+                for sid in same_cell_snakes:
+                    snake = self.snakes[sid]
                     snake.alive = False
-                    snake.death_reason = 'body_collision'
-                    snake.death_round = self.round_number
-                    break  # No need to check further.
+                    snake.death_reason = "head_collision"
+                    snake.death_round  = self.round_number
 
-        # 3c. Head-to-head collisions: if two or more snake heads land on the same cell.
-        for sid, head_pos in new_heads.items():
+        # c) head-into-body collisions
+        body_cells: Set[Tuple[int, int]] = set()
+        for sid, body in proposed_bodies.items():
+            if self.snakes[sid].alive:
+                body_cells.update(body[1:])   # exclude each snake's head
+
+        for sid, head in new_heads.items():
             snake = self.snakes[sid]
-            if not snake.alive or head_pos is None:
+            if not snake.alive or head is None:
                 continue
-
-            if len(cell_counts[head_pos]) > 1:
+            if head in body_cells:
                 snake.alive = False
-                snake.death_reason = 'head_collision'
-                snake.death_round = self.round_number
+                snake.death_reason = "body_collision"
+                snake.death_round  = self.round_number
 
-        # 3d) Figure out how many died this round and decide the outcome immediately
+        # Which snakes died this round?
         snakes_died_this_round = [
             sid for sid, s in self.snakes.items()
             if not s.alive and s.death_round == self.round_number
         ]
 
-        if len(snakes_died_this_round) > 0:
-            # Example if you have exactly two snakes total:
-            if len(snakes_died_this_round) == 1 and len(self.snakes) == 2:
-                # Exactly one of the two snakes died => the other wins immediately
-                surviving_snakes = [sid for sid, s in self.snakes.items() if s.alive]
+        # If exactly two snakes total, handle immediate win / tie logic
+        if len(snakes_died_this_round) > 0 and len(self.snakes) == 2:
+            if len(snakes_died_this_round) == 1:
+                survivor = [sid for sid in self.snakes if self.snakes[sid].alive][0]
                 self.game_over = True
-                self.game_result = {sid: "lost" for sid in self.snakes}
-                for sid in surviving_snakes:
-                    self.game_result[sid] = "won"
-
-                print(f"Game Over: Snake(s) {snakes_died_this_round} died. "
-                    f"Survivor(s) {surviving_snakes} win(s).")
-                self.round_number += 1
-                self.record_history()
-                return
-
-            elif len(snakes_died_this_round) >= 2 and len(self.snakes) == 2:
-                # Both died simultaneously => tie
+                self.game_result = {snakes_died_this_round[0]: "lost", survivor: "won"}
+            else:  # both died
                 self.game_over = True
                 self.game_result = {sid: "tied" for sid in self.snakes}
-                print("Game Over: Both snakes died this round. It's a tie!")
-                self.round_number += 1
-                self.record_history()
-                return
 
-            # If you have more than 2 snakes, you can generalize:
-            # e.g. if len(snakes_died_this_round) == len(self.snakes), then all died => tie
-            # if len(snakes_died_this_round) == len(self.snakes) - 1 => one snake left => that snake wins
-            # etc.
+            self.round_number += 1
+            self.record_history()
+            return
 
-        # 4) Move snakes & handle apple eating/growth
+        # --------------------------------------------------
+        # 5) Commit the moves & handle apples for the survivors
+        # --------------------------------------------------
         for sid, snake in self.snakes.items():
-            if snake.alive and new_heads[sid] is not None:
-                head_pos = new_heads[sid]
-                # If the head is on any apple, grow + score
-                if head_pos in self.apples:
-                    snake.positions.appendleft(head_pos)
-                    self.scores[sid] += 1
-                    # Remove that apple from the list
-                    self.apples.remove(head_pos)
-                    # Spawn a new apple so we always have `num_apples`
-                    new_apple = self._random_free_cell()
-                    self.apples.append(new_apple)
-                else:
-                    # Normal move: add new head, pop tail
-                    snake.positions.appendleft(head_pos)
-                    snake.positions.pop()
+            if not snake.alive or new_heads.get(sid) is None:
+                continue
 
-        # 5) End round, record state, check round limit
-        # self.record_history()
+            snake.positions = deque(proposed_bodies[sid])
+
+            if eats_apple[sid]:
+                self.scores[sid] += 1
+                self.apples.remove(new_heads[sid])
+
+        # keep apple count constant
+        while len(self.apples) < self.num_apples:
+            self.apples.append(self._random_free_cell())
+
+        # --------------------------------------------------
+        # 6) End-of-round bookkeeping (round limit / last snake)
+        # --------------------------------------------------
         self.round_number += 1
+        alive_snakes = [sid for sid, s in self.snakes.items() if s.alive]
 
         if self.round_number >= self.max_rounds:
             self.end_game("Reached max rounds.")
-        else:
-            alive_snakes = [s_id for s_id in self.snakes if self.snakes[s_id].alive]
-            if len(alive_snakes) <= 1:
-                self.end_game("All but one snake are dead.")
+        elif len(alive_snakes) <= 1:
+            self.end_game("All but one snake are dead.")
 
         print(f"Finished round {self.round_number}. Alive: {alive_snakes}, Scores: {self.scores}")
-        time.sleep(.3)
+        time.sleep(0.3)
 
     def serialize_history(self, history):
         """
