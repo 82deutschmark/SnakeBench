@@ -1,3 +1,4 @@
+# Updated November 2025 - Based on models.md as source of truth
 # Prices are in USD per 1 million tokens.
 
 models:
@@ -6,106 +7,32 @@ models:
 #### OpenAI ####
 ################
 
-  - name: 'o1-pro-2025-03-19'
-    model_name: 'o1-pro-2025-03-19'
-    api_type: 'responses'
+  - name: 'gpt-4.1-nano-2025-04-14'
+    model_name: 'gpt-4.1-nano-2025-04-14'
     provider: 'openai'
-    max_completion_tokens: 8000
+    max_completion_tokens: 32768
     pricing:
-      date: "2025-04-30"
-      input: 150.00
-      output: 600.00
+      date: "2025-04"
+      input: 0.10
+      output: 0.40
 
-  - name: 'gpt-4.5-preview-2025-02-27'
-    model_name: 'gpt-4.5-preview-2025-02-27'
+  - name: 'gpt-4.1-mini-2025-04-14'
+    model_name: 'gpt-4.1-mini-2025-04-14'
     provider: 'openai'
-    max_completion_tokens: 8000
+    max_completion_tokens: 32768
     pricing:
-      date: "2025-04-30"
-      input: 75.00
-      output: 150.00
+      date: "2025-04"
+      input: 0.40
+      output: 1.60
 
   - name: 'gpt-4o-mini-2024-07-18'
     model_name: 'gpt-4o-mini-2024-07-18'
     provider: 'openai'
     max_completion_tokens: 8000
     pricing:
-      date: "2025-04-30"
-      input: 0.60
-      output: 2.40
-
-  - name: 'gpt-4o-2024-11-20'
-    model_name: 'gpt-4o-2024-11-20'
-    provider: 'openai'
-    max_completion_tokens: 8000
-    pricing:
-      date: "2025-04-30"
-      input: 2.50
-      output: 10.00
-
-  - name: 'gpt-4o-2024-08-06'
-    model_name: 'gpt-4o-2024-08-06'
-    provider: 'openai'
-    max_completion_tokens: 8000
-    pricing:
-      date: "2025-04-30"
-      input: 2.50
-      output: 10.00
-
-  - name: 'gpt-4-turbo-2024-04-09'
-    model_name: 'gpt-4-turbo-2024-04-09'
-    provider: 'openai'
-    max_completion_tokens: 8000
-    pricing:
-      date: "2025-04-30"
-      input: 10.00
-      output: 30.00
-
-  - name: 'gpt-4-0613'
-    model_name: 'gpt-4-0613'
-    provider: 'openai'
-    max_completion_tokens: 8000
-    pricing:
-      date: "2025-04-30"
-      input: 30.00
-      output: 60.00
-
-  - name: 'gpt-3.5-turbo-0125'
-    model_name: 'gpt-3.5-turbo-0125'
-    provider: 'openai'
-    max_completion_tokens: 4096
-    pricing:
-      date: "2025-04-30"
-      input: 0.50
-      output: 1.50
-
-  - name: 'o1-mini'
-    model_name: 'o1-mini'
-    provider: 'openai'
-    max_completion_tokens: 8000
-    pricing:
-      date: "2025-04-30"
-      input: 1.10
-      output: 4.40
-
-  - name: 'o3-mini'
-    model_name: 'o3-mini'
-    provider: 'openai'
-    max_completion_tokens: 8000
-    pricing:
-      date: "2025-04-30"
-      input: 1.10
-      output: 4.40
-
-  - name: 'o3-2025-04-16-low'
-    model_name: 'o3-2025-04-16'
-    reasoning_effort: 'low'
-    provider: 'openai'
-    max_completion_tokens: 100000
-    pricing:
-      date: "2025-04-30"
-      input: 2.00
-      output: 8.00
+      date: "2024-07"
+      input: 0.15
+      output: 0.60
 
   - name: 'o3-mini-2025-01-31-low'
     model_name: 'o3-mini-2025-01-31'
@@ -113,7 +40,7 @@ models:
     provider: 'openai'
     max_completion_tokens: 100000
     pricing:
-      date: "2025-04-30"
+      date: "2025-01"
       input: 1.10
       output: 4.40
 
@@ -123,7 +50,7 @@ models:
     provider: 'openai'
     max_completion_tokens: 100000
     pricing:
-      date: "2025-04-30"
+      date: "2025-01"
       input: 1.10
       output: 4.40
 
@@ -133,36 +60,9 @@ models:
     provider: 'openai'
     max_completion_tokens: 100000
     pricing:
-      date: "2025-04-30"
+      date: "2025-01"
       input: 1.10
       output: 4.40
-
-  - name: 'gpt-4.1-2025-04-14'
-    model_name: 'gpt-4.1-2025-04-14'
-    provider: 'openai'
-    max_completion_tokens: 32768
-    pricing:
-      date: "2025-04-30"
-      input: 2.00
-      output: 8.00
-
-  - name: 'gpt-4.1-mini-2025-04-14'
-    model_name: 'gpt-4.1-mini-2025-04-14'
-    provider: 'openai'
-    max_completion_tokens: 32768
-    pricing:
-      date: "2025-04-28"
-      input: 0.40 
-      output: 1.60
-
-  - name: 'gpt-4.1-nano-2025-04-14'
-    model_name: 'gpt-4.1-nano-2025-04-14'
-    provider: 'openai'
-    max_completion_tokens: 32768
-    pricing:
-      date: "2025-04-28"
-      input: 0.10 
-      output: 0.40
 
   - name: 'o4-mini-2025-04-16-low'
     model_name: 'o4-mini-2025-04-16'
@@ -170,8 +70,8 @@ models:
     provider: 'openai'
     max_completion_tokens: 100000
     pricing:
-      date: "2025-04-28"
-      input: 1.10 
+      date: "2025-04"
+      input: 1.10
       output: 4.40
 
   - name: 'o4-mini-2025-04-16-medium'
@@ -180,8 +80,8 @@ models:
     provider: 'openai'
     max_completion_tokens: 100000
     pricing:
-      date: "2025-04-28"
-      input: 1.10 
+      date: "2025-04"
+      input: 1.10
       output: 4.40
 
   - name: 'o4-mini-2025-04-16-high'
@@ -190,251 +90,436 @@ models:
     provider: 'openai'
     max_completion_tokens: 100000
     pricing:
-      date: "2025-04-28"
-      input: 1.10 
+      date: "2025-04"
+      input: 1.10
       output: 4.40
 
-
-####################
-#### Google #####
-####################
-
-  - name: 'gemini-2.5-flash-preview-04-17'
-    model_name: 'gemini-2.5-flash-preview-04-17'
-    provider: 'google'
+  - name: 'o3-2025-04-16-low'
+    model_name: 'o3-2025-04-16'
+    reasoning_effort: 'low'
+    provider: 'openai'
+    max_completion_tokens: 100000
     pricing:
-      date: "2025-04-28"
-      input: 0.15
-      output: 0.60
+      date: "2025-04"
+      input: 2.00
+      output: 8.00
+
+  - name: 'gpt-4.1-2025-04-14'
+    model_name: 'gpt-4.1-2025-04-14'
+    provider: 'openai'
+    max_completion_tokens: 32768
+    pricing:
+      date: "2025-04"
+      input: 2.00
+      output: 8.00
+
+  - name: 'gpt-5-2025-08-07'
+    model_name: 'gpt-5-2025-08-07'
+    provider: 'openai'
+    max_completion_tokens: 32768
+    pricing:
+      date: "2025-08"
+      input: 1.25
+      output: 10.00
+
+  - name: 'gpt-5-chat-latest'
+    model_name: 'gpt-5-chat-latest'
+    provider: 'openai'
+    max_completion_tokens: 32768
+    pricing:
+      date: "2025-08"
+      input: 1.25
+      output: 10.00
+
+  - name: 'gpt-5-mini-2025-08-07'
+    model_name: 'gpt-5-mini-2025-08-07'
+    provider: 'openai'
+    max_completion_tokens: 32768
+    pricing:
+      date: "2025-08"
+      input: 0.25
+      output: 2.00
+
+  - name: 'gpt-5-nano-2025-08-07'
+    model_name: 'gpt-5-nano-2025-08-07'
+    provider: 'openai'
+    max_completion_tokens: 32768
+    pricing:
+      date: "2025-08"
+      input: 0.05
+      output: 0.40
 
 ####################
 #### Anthropic #####
 ####################
-
-  - name: 'claude-3-opus-20240229'
-    model_name: 'claude-3-opus-20240229'
-    provider: 'anthropic'
-    max_tokens: 4096
-    pricing:
-      date: "2024-07-26"
-      input: 15.00
-      output: 75.00
-
-  - name: 'claude-3-sonnet-20240229'
-    model_name: 'claude-3-sonnet-20240229'
-    provider: 'anthropic'
-    max_tokens: 4096
-
-  - name: 'claude-3-haiku-20240307'
-    model_name: 'claude-3-haiku-20240307'
-    provider: 'anthropic'
-    max_tokens: 4096
-    pricing:
-      date: "2024-07-26"
-      input: 0.25
-      output: 1.25
-
-  - name: 'claude-3-5-haiku-20241022'
-    model_name: 'claude-3-5-haiku-20241022'
-    provider: 'anthropic'
-    max_tokens: 8192
-    pricing:
-      date: "2024-07-26"
-      input: 0.80
-      output: 4.00
-
-  - name: 'claude-3-5-sonnet-20241022'
-    model_name: 'claude-3-5-sonnet-20241022'
-    provider: 'anthropic'
-    max_tokens: 8192
-    pricing:
-      date: "2024-07-26"
-      input: 3.00
-      output: 15.00
-
-  - name: 'claude-3-7-sonnet-20250219'
-    model_name: 'claude-3-7-sonnet-20250219'
-    provider: 'anthropic'
-    max_tokens: 64000
-    pricing:
-      date: "2024-07-26"
-      input: 3.00
-      output: 15.00
 
   - name: 'claude-sonnet-4-20250514'
     model_name: 'claude-sonnet-4-20250514'
     provider: 'anthropic'
     max_tokens: 64000
     pricing:
-      date: "2024-07-26"
+      date: "2025-05"
       input: 3.00
       output: 15.00
 
-################
-### Together ###
-################
+  - name: 'claude-sonnet-4-5-20250929'
+    model_name: 'claude-sonnet-4-5-20250929'
+    provider: 'anthropic'
+    max_tokens: 64000
+    pricing:
+      date: "2025-09"
+      input: 3.00
+      output: 15.00
 
-  - name: 'deepseek-ai/DeepSeek-R1'
-    model_name: 'deepseek-ai/DeepSeek-R1'
-    provider: 'together'
-    max_completion_tokens: 8000
+  - name: 'claude-3-7-sonnet-20250219'
+    model_name: 'claude-3-7-sonnet-20250219'
+    provider: 'anthropic'
+    max_tokens: 20000
+    pricing:
+      date: "2025-02"
+      input: 3.00
+      output: 15.00
 
-  - name: 'deepseek-ai/DeepSeek-R1-Distill-Llama-70B'
-    model_name: 'deepseek-ai/DeepSeek-R1-Distill-Llama-70B'
-    provider: 'together'
-    max_completion_tokens: 8000
+  - name: 'claude-3-5-sonnet-20241022'
+    model_name: 'claude-3-5-sonnet-20241022'
+    provider: 'anthropic'
+    max_tokens: 8192
+    pricing:
+      date: "2024-10"
+      input: 3.00
+      output: 15.00
 
-  - name: 'deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B'
-    model_name: 'deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B'
-    provider: 'together'
-    max_completion_tokens: 8000
+  - name: 'claude-3-5-haiku-20241022'
+    model_name: 'claude-3-5-haiku-20241022'
+    provider: 'anthropic'
+    max_tokens: 4000
+    pricing:
+      date: "2024-10"
+      input: 0.80
+      output: 4.00
 
-  - name: 'deepseek-ai/DeepSeek-R1-Distill-Qwen-14B'
-    model_name: 'deepseek-ai/DeepSeek-R1-Distill-Qwen-14B'
-    provider: 'together'
-    max_completion_tokens: 8000
+  - name: 'claude-haiku-4-5-20251015'
+    model_name: 'claude-haiku-4-5-20251015'
+    provider: 'anthropic'
+    max_tokens: 16000
+    pricing:
+      date: "2025-10"
+      input: 1.00
+      output: 5.00
 
-  - name: 'deepseek-ai/DeepSeek-V3'
-    model_name: 'deepseek-ai/DeepSeek-V3'
-    provider: 'together'
-    max_completion_tokens: 8000
+  - name: 'claude-3-haiku-20240307'
+    model_name: 'claude-3-haiku-20240307'
+    provider: 'anthropic'
+    max_tokens: 4000
+    pricing:
+      date: "2024-03"
+      input: 0.25
+      output: 1.25
 
-  - name: 'Gryphe/MythoMax-L2-13b'
-    model_name: 'Gryphe/MythoMax-L2-13b'
-    provider: 'together'
-    max_completion_tokens: 8000
+####################
+#### Google #####
+####################
 
-  - name: 'meta-llama/Llama-2-13b-chat-hf'
-    model_name: 'meta-llama/Llama-2-13b-chat-hf'
-    provider: 'together'
-    max_completion_tokens: 8000
+  - name: 'gemini-2.5-pro'
+    model_name: 'models/gemini-2.5-pro'
+    provider: 'google'
+    pricing:
+      date: "2025-08"
+      input: 2.50
+      output: 8.00
 
-  - name: 'meta-llama/Llama-3-70b-chat-hf'
-    model_name: 'meta-llama/Llama-3-70b-chat-hf'
-    provider: 'together'
-    max_completion_tokens: 8000
+  - name: 'gemini-2.5-flash'
+    model_name: 'models/gemini-2.5-flash'
+    provider: 'google'
+    pricing:
+      date: "2025-08"
+      input: 0.70
+      output: 2.10
 
-  - name: 'meta-llama/Llama-3-8b-chat-hf'
-    model_name: 'meta-llama/Llama-3-8b-chat-hf'
-    provider: 'together'
-    max_completion_tokens: 8000
+  - name: 'gemini-2.5-flash-lite'
+    model_name: 'models/gemini-2.5-flash-lite'
+    provider: 'google'
+    pricing:
+      date: "2025-08"
+      input: 0.35
+      output: 1.05
 
-  - name: 'meta-llama/Llama-3.2-3B-Instruct-Turbo'
-    model_name: 'meta-llama/Llama-3.2-3B-Instruct-Turbo'
-    provider: 'together'
-    max_completion_tokens: 8000
+  - name: 'gemini-2.0-flash'
+    model_name: 'models/gemini-2.0-flash'
+    provider: 'google'
+    pricing:
+      date: "2025-08"
+      input: 0.20
+      output: 0.60
 
-  - name: 'meta-llama/Llama-3.3-70B-Instruct-Turbo'
-    model_name: 'meta-llama/Llama-3.3-70B-Instruct-Turbo'
-    provider: 'together'
-    max_completion_tokens: 8000
+  - name: 'gemini-2.0-flash-lite'
+    model_name: 'models/gemini-2.0-flash-lite'
+    provider: 'google'
+    pricing:
+      date: "2025-08"
+      input: 0.10
+      output: 0.30
 
-  - name: 'meta-llama/Meta-Llama-3-70B-Instruct-Turbo'
-    model_name: 'meta-llama/Meta-Llama-3-70B-Instruct-Turbo'
-    provider: 'together'
-    max_completion_tokens: 8000
+####################
+#### DeepSeek #####
+####################
 
-  - name: 'meta-llama/Meta-Llama-3-8B-Instruct-Lite'
-    model_name: 'meta-llama/Meta-Llama-3-8B-Instruct-Lite'
-    provider: 'together'
+  - name: 'deepseek-chat'
+    model_name: 'deepseek-chat'
+    provider: 'deepseek'
     max_completion_tokens: 8000
+    pricing:
+      date: "2025-11"
+      input: 0.14
+      output: 0.28
 
-  - name: 'meta-llama/Meta-Llama-3-8B-Instruct-Turbo'
-    model_name: 'meta-llama/Meta-Llama-3-8B-Instruct-Turbo'
-    provider: 'together'
+  - name: 'deepseek-reasoner'
+    model_name: 'deepseek-reasoner'
+    provider: 'deepseek'
     max_completion_tokens: 8000
+    pricing:
+      date: "2025-11"
+      input: 0.55
+      output: 2.19
 
-  - name: 'meta-llama/Meta-Llama-3.1-405B-Instruct-Turbo'
-    model_name: 'meta-llama/Meta-Llama-3.1-405B-Instruct-Turbo'
-    provider: 'together'
-    max_completion_tokens: 8000
+####################
+#### xAI (Grok) ####
+####################
 
-  - name: 'meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo'
-    model_name: 'meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo'
-    provider: 'together'
-    max_completion_tokens: 8000
+  - name: 'grok-4'
+    model_name: 'grok-4'
+    provider: 'xai'
+    max_completion_tokens: 31000
+    pricing:
+      date: "2025-07"
+      input: 3.00
+      output: 15.00
 
-  - name: 'meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo'
-    model_name: 'meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo'
-    provider: 'together'
-    max_completion_tokens: 8000
+  - name: 'grok-4-fast-reasoning'
+    model_name: 'grok-4-fast-reasoning'
+    provider: 'xai'
+    max_completion_tokens: 30000
+    pricing:
+      date: "2025-09"
+      input: 0.20
+      output: 0.40
 
-  - name: 'microsoft/WizardLM-2-8x22B'
-    model_name: 'microsoft/WizardLM-2-8x22B'
-    provider: 'together'
-    max_completion_tokens: 8000
+  - name: 'grok-4-fast-non-reasoning'
+    model_name: 'grok-4-fast-non-reasoning'
+    provider: 'xai'
+    max_completion_tokens: 30000
+    pricing:
+      date: "2025-09"
+      input: 0.20
+      output: 0.40
 
-  - name: 'mistralai/Mistral-7B-Instruct-v0.1'
-    model_name: 'mistralai/Mistral-7B-Instruct-v0.1'
-    provider: 'together'
-    max_completion_tokens: 8000
+####################
+#### OpenRouter ####
+####################
 
-  - name: 'mistralai/Mistral-7B-Instruct-v0.2'
-    model_name: 'mistralai/Mistral-7B-Instruct-v0.2'
-    provider: 'together'
-    max_completion_tokens: 8000
+  - name: 'deepseek/deepseek-v3.1-terminus'
+    model_name: 'deepseek/deepseek-v3.1-terminus'
+    provider: 'openrouter'
+    max_completion_tokens: 32000
+    pricing:
+      date: "2025-09"
+      input: 0.27
+      output: 1.00
 
-  - name: 'mistralai/Mistral-7B-Instruct-v0.3'
-    model_name: 'mistralai/Mistral-7B-Instruct-v0.3'
-    provider: 'together'
-    max_completion_tokens: 8000
+  - name: 'qwen/qwen-plus-2025-07-28:thinking'
+    model_name: 'qwen/qwen-plus-2025-07-28:thinking'
+    provider: 'openrouter'
+    max_completion_tokens: 32800
+    pricing:
+      date: "2025-07"
+      input: 0.80
+      output: 8.00
 
-  - name: 'mistralai/Mistral-Small-24B-Instruct-2501'
-    model_name: 'mistralai/Mistral-Small-24B-Instruct-2501'
-    provider: 'together'
-    max_completion_tokens: 8000
+  - name: 'meta-llama/llama-3.3-70b-instruct'
+    model_name: 'meta-llama/llama-3.3-70b-instruct'
+    provider: 'openrouter'
+    max_completion_tokens: 32000
+    pricing:
+      date: "2024-06"
+      input: 0.59
+      output: 0.79
 
-  - name: 'mistralai/Mixtral-8x22B-Instruct-v0.1'
-    model_name: 'mistralai/Mixtral-8x22B-Instruct-v0.1'
-    provider: 'together'
-    max_completion_tokens: 8000
+  - name: 'nousresearch/hermes-4-70b'
+    model_name: 'nousresearch/hermes-4-70b'
+    provider: 'openrouter'
+    max_completion_tokens: 25000
+    pricing:
+      date: "2025-11"
+      input: 0.07
+      output: 0.35
 
-  - name: 'mistralai/Mixtral-8x7B-Instruct-v0.1'
-    model_name: 'mistralai/Mixtral-8x7B-Instruct-v0.1'
-    provider: 'together'
-    max_completion_tokens: 8000
+  - name: 'mistralai/mistral-large'
+    model_name: 'mistralai/mistral-large'
+    provider: 'openrouter'
+    max_completion_tokens: 32768
+    pricing:
+      date: "2025-11"
+      input: 2.00
+      output: 6.00
 
-  - name: 'NousResearch/Nous-Hermes-2-Mixtral-8x7B-DPO'
-    model_name: 'NousResearch/Nous-Hermes-2-Mixtral-8x7B-DPO'
-    provider: 'together'
-    max_completion_tokens: 8000
+  - name: 'deepseek/deepseek-chat-v3.1'
+    model_name: 'deepseek/deepseek-chat-v3.1'
+    provider: 'openrouter'
+    max_completion_tokens: 32768
+    pricing:
+      date: "2025-11"
+      input: 0.27
+      output: 1.10
 
-  - name: 'nvidia/Llama-3.1-Nemotron-70B-Instruct-HF'
-    model_name: 'nvidia/Llama-3.1-Nemotron-70B-Instruct-HF'
-    provider: 'together'
-    max_completion_tokens: 8000
+  - name: 'openai/gpt-oss-120b'
+    model_name: 'openai/gpt-oss-120b'
+    provider: 'openrouter'
+    max_completion_tokens: 20000
+    pricing:
+      date: "2025-11"
+      input: 0.072
+      output: 0.28
 
-  - name: 'Qwen/Qwen2-72B-Instruct'
-    model_name: 'Qwen/Qwen2-72B-Instruct'
-    provider: 'together'
+  - name: 'mistralai/codestral-2508'
+    model_name: 'mistralai/codestral-2508'
+    provider: 'openrouter'
     max_completion_tokens: 8000
+    pricing:
+      date: "2025-11"
+      input: 0.30
+      output: 0.90
 
-  - name: 'Qwen/Qwen2-VL-72B-Instruct'
-    model_name: 'Qwen/Qwen2-VL-72B-Instruct'
-    provider: 'together'
-    max_completion_tokens: 8000
+  - name: 'qwen/qwen3-coder'
+    model_name: 'qwen/qwen3-coder'
+    provider: 'openrouter'
+    max_completion_tokens: 31000
+    pricing:
+      date: "2025-11"
+      input: 0.20
+      output: 0.80
 
-  - name: 'Qwen/Qwen2.5-72B-Instruct-Turbo'
-    model_name: 'Qwen/Qwen2.5-72B-Instruct-Turbo'
-    provider: 'together'
-    max_completion_tokens: 8000
+  - name: 'moonshotai/kimi-k2-thinking'
+    model_name: 'moonshotai/kimi-k2-thinking'
+    provider: 'openrouter'
+    max_completion_tokens: 31000
+    pricing:
+      date: "2025-11"
+      input: 0.60
+      output: 2.50
 
-  - name: 'Qwen/Qwen2.5-7B-Instruct-Turbo'
-    model_name: 'Qwen/Qwen2.5-7B-Instruct-Turbo'
-    provider: 'together'
-    max_completion_tokens: 8000
+  - name: 'moonshotai/kimi-dev-72b:free'
+    model_name: 'moonshotai/kimi-dev-72b:free'
+    provider: 'openrouter'
+    max_completion_tokens: 31000
+    pricing:
+      date: "2025-11"
+      input: 0.00
+      output: 0.00
 
-  - name: 'Qwen/Qwen2.5-Coder-32B-Instruct'
-    model_name: 'Qwen/Qwen2.5-Coder-32B-Instruct'
-    provider: 'together'
-    max_completion_tokens: 8000
+  - name: 'openrouter/polaris-alpha'
+    model_name: 'openrouter/polaris-alpha'
+    provider: 'openrouter'
+    max_completion_tokens: 60000
+    pricing:
+      date: "2025-11"
+      input: 0.00
+      output: 0.00
 
-  - name: 'Qwen/QwQ-32B-Preview'
-    model_name: 'Qwen/QwQ-32B-Preview'
-    provider: 'together'
-    max_completion_tokens: 8000
+  - name: 'x-ai/grok-3'
+    model_name: 'x-ai/grok-3'
+    provider: 'openrouter'
+    max_completion_tokens: 31000
+    pricing:
+      date: "2024-11"
+      input: 3.00
+      output: 15.00
 
-  - name: 'upstage/SOLAR-10.7B-Instruct-v1.0'
-    model_name: 'upstage/SOLAR-10.7B-Instruct-v1.0'
-    provider: 'together'
-    max_completion_tokens: 8000
+  - name: 'x-ai/grok-3-mini'
+    model_name: 'x-ai/grok-3-mini'
+    provider: 'openrouter'
+    max_completion_tokens: 31000
+    pricing:
+      date: "2024-11"
+      input: 0.30
+      output: 0.50
+
+  - name: 'x-ai/grok-code-fast-1'
+    model_name: 'x-ai/grok-code-fast-1'
+    provider: 'openrouter'
+    max_completion_tokens: 25000
+    pricing:
+      date: "2025-05"
+      input: 0.20
+      output: 1.50
+
+  - name: 'x-ai/grok-3-mini-fast'
+    model_name: 'x-ai/grok-3-mini-fast'
+    provider: 'openrouter'
+    max_completion_tokens: 31000
+    pricing:
+      date: "2024-11"
+      input: 0.20
+      output: 0.40
+
+  - name: 'anthropic/claude-haiku-4.5'
+    model_name: 'anthropic/claude-haiku-4.5'
+    provider: 'openrouter'
+    max_completion_tokens: 116000
+    pricing:
+      date: "2025-10"
+      input: 1.00
+      output: 5.00
+
+  - name: 'nvidia/nemotron-nano-9b-v2'
+    model_name: 'nvidia/nemotron-nano-9b-v2'
+    provider: 'openrouter'
+    max_completion_tokens: 124000
+    pricing:
+      date: "2025-09"
+      input: 0.00
+      output: 0.00
+
+  - name: 'nvidia/nemotron-nano-12b-v2-vl:free'
+    model_name: 'nvidia/nemotron-nano-12b-v2-vl:free'
+    provider: 'openrouter'
+    max_completion_tokens: 124000
+    pricing:
+      date: "2025-10"
+      input: 0.00
+      output: 0.00
+
+  - name: 'amazon/nova-premier-v1'
+    model_name: 'amazon/nova-premier-v1'
+    provider: 'openrouter'
+    max_completion_tokens: 60000
+    pricing:
+      date: "2025-10"
+      input: 2.50
+      output: 12.50
+
+  - name: 'minimax/minimax-m2'
+    model_name: 'minimax/minimax-m2'
+    provider: 'openrouter'
+    max_completion_tokens: 32768
+    pricing:
+      date: "2025-10"
+      input: 0.30
+      output: 1.20
+
+  - name: 'google/gemini-2.5-flash-preview-09-2025'
+    model_name: 'google/gemini-2.5-flash-preview-09-2025'
+    provider: 'openrouter'
+    max_completion_tokens: 65500
+    pricing:
+      date: "2025-09"
+      input: 0.30
+      output: 2.50
+
+  - name: 'z-ai/glm-4.6'
+    model_name: 'z-ai/glm-4.6'
+    provider: 'openrouter'
+    max_completion_tokens: 128000
+    pricing:
+      date: "2025-09"
+      input: 0.60
+      output: 2.20

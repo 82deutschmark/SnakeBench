@@ -147,6 +147,62 @@ class OllamaProvider(LLMProviderInterface):
              return "" # Or raise an error
 
 
+class DeepSeekProvider(LLMProviderInterface):
+    def __init__(self, api_key: str, config: Dict[str, Any]):
+        # DeepSeek uses OpenAI-compatible API
+        self.client = OpenAI(api_key=api_key, base_url="https://api.deepseek.com")
+        self.model_name = config['model_name']
+        self.api_kwargs = self.extract_api_kwargs(config)
+
+    def get_response(self, prompt: str) -> str:
+        response = self.client.chat.completions.create(
+            model=self.model_name,
+            messages=[{"role": "user", "content": prompt}],
+            **self.api_kwargs,
+        )
+        return response.choices[0].message.content.strip()
+
+
+class xAIProvider(LLMProviderInterface):
+    def __init__(self, api_key: str, config: Dict[str, Any]):
+        # xAI uses OpenAI-compatible API
+        self.client = OpenAI(api_key=api_key, base_url="https://api.x.ai/v1")
+        self.model_name = config['model_name']
+        self.api_kwargs = self.extract_api_kwargs(config)
+
+    def get_response(self, prompt: str) -> str:
+        # xAI uses chat completions format
+        response = self.client.chat.completions.create(
+            model=self.model_name,
+            messages=[{"role": "user", "content": prompt}],
+            **self.api_kwargs,
+        )
+        return response.choices[0].message.content.strip()
+
+
+class OpenRouterProvider(LLMProviderInterface):
+    def __init__(self, api_key: str, config: Dict[str, Any]):
+        # OpenRouter uses OpenAI-compatible API with custom base URL
+        self.client = OpenAI(
+            api_key=api_key,
+            base_url="https://openrouter.ai/api/v1",
+            default_headers={
+                "HTTP-Referer": "https://github.com/yourusername/snakebench",  # Optional
+                "X-Title": "SnakeBench",  # Optional
+            }
+        )
+        self.model_name = config['model_name']
+        self.api_kwargs = self.extract_api_kwargs(config)
+
+    def get_response(self, prompt: str) -> str:
+        response = self.client.chat.completions.create(
+            model=self.model_name,
+            messages=[{"role": "user", "content": prompt}],
+            **self.api_kwargs,
+        )
+        return response.choices[0].message.content.strip()
+
+
 def create_llm_provider(player_config: Dict[str, Any]) -> LLMProviderInterface:
     """
     Factory function for creating an LLM provider instance.
@@ -173,5 +229,17 @@ def create_llm_provider(player_config: Dict[str, Any]) -> LLMProviderInterface:
         if not os.getenv("TOGETHERAI_API_KEY"):
             raise ValueError("TOGETHERAI_API_KEY is not set in the environment variables.")
         return TogetherProvider(api_key=os.getenv("TOGETHERAI_API_KEY"), config=player_config)
+    elif provider == 'deepseek':
+        if not os.getenv("DEEPSEEK_API_KEY"):
+            raise ValueError("DEEPSEEK_API_KEY is not set in the environment variables.")
+        return DeepSeekProvider(api_key=os.getenv("DEEPSEEK_API_KEY"), config=player_config)
+    elif provider == 'xai':
+        if not os.getenv("XAI_API_KEY"):
+            raise ValueError("XAI_API_KEY is not set in the environment variables.")
+        return xAIProvider(api_key=os.getenv("XAI_API_KEY"), config=player_config)
+    elif provider == 'openrouter':
+        if not os.getenv("OPENROUTER_API_KEY"):
+            raise ValueError("OPENROUTER_API_KEY is not set in the environment variables.")
+        return OpenRouterProvider(api_key=os.getenv("OPENROUTER_API_KEY"), config=player_config)
     else:
         raise ValueError(f"Unsupported provider: {provider}")
