@@ -1,12 +1,24 @@
 import os
 from openai import OpenAI
 import anthropic
-from google import genai
-from google.genai import types
+try:
+    from google import genai
+    from google.genai import types
+except ImportError:
+    # Fallback for older google-generativeai versions
+    import google.generativeai as genai
+    types = None
 from typing import Dict, Any, Optional
-from together import Together
-from ollama import chat
-from ollama import ChatResponse
+try:
+    from together import Together
+except ImportError:
+    Together = None
+try:
+    from ollama import chat
+    from ollama import ChatResponse
+except ImportError:
+    chat = None
+    ChatResponse = None
 
 class LLMProviderInterface:
     """
