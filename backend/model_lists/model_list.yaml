@@ -1,4 +1,4 @@
-# Updated November 2025 - Based on models.md as source of truth
+# Updated November 2025
 # Prices are in USD per 1 million tokens.
 
 models:
@@ -470,24 +470,6 @@ models:
       input: 1.00
       output: 5.00
 
-  - name: 'nvidia/nemotron-nano-9b-v2'
-    model_name: 'nvidia/nemotron-nano-9b-v2'
-    provider: 'openrouter'
-    max_completion_tokens: 124000
-    pricing:
-      date: "2025-09"
-      input: 0.00
-      output: 0.00
-
-  - name: 'nvidia/nemotron-nano-12b-v2-vl:free'
-    model_name: 'nvidia/nemotron-nano-12b-v2-vl:free'
-    provider: 'openrouter'
-    max_completion_tokens: 124000
-    pricing:
-      date: "2025-10"
-      input: 0.00
-      output: 0.00
-
   - name: 'amazon/nova-premier-v1'
     model_name: 'amazon/nova-premier-v1'
     provider: 'openrouter'
@@ -505,15 +487,6 @@ models:
       date: "2025-10"
       input: 0.30
       output: 1.20
-
-  - name: 'google/gemini-2.5-flash-preview-09-2025'
-    model_name: 'google/gemini-2.5-flash-preview-09-2025'
-    provider: 'openrouter'
-    max_completion_tokens: 65500
-    pricing:
-      date: "2025-09"
-      input: 0.30
-      output: 2.50
 
   - name: 'z-ai/glm-4.6'
     model_name: 'z-ai/glm-4.6'
