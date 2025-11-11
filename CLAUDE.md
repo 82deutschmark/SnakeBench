@@ -17,7 +17,15 @@ LLM Snake Arena is a competitive simulation platform where Large Language Models
 ```bash
 cd backend
 pip install -r requirements.txt
-# Create .env file with API keys for LLM providers (OpenAI, Anthropic, Google, Together, Ollama)
+# Create .env file with API keys for LLM providers
+# Required API keys (depending on which models you want to use):
+# - OPENAI_API_KEY (for GPT-4.1, GPT-5, o3/o4 models)
+# - ANTHROPIC_API_KEY (for Claude 3.x/4.x models)
+# - GOOGLE_API_KEY (for Gemini 2.x models)
+# - DEEPSEEK_API_KEY (for DeepSeek Chat/Reasoner models)
+# - XAI_API_KEY (for Grok-4 models)
+# - OPENROUTER_API_KEY (for OpenRouter models: Llama, Mistral, Qwen, etc.)
+# - OLLAMA_URL (optional, for local Ollama models, defaults to http://localhost:11434)
 ```
 
 **Running Simulations:**
@@ -87,7 +95,7 @@ The `.startsession` script starts both backend API and frontend in a tmux sessio
 
 2. **LLM Integration (llm_providers.py)**:
    - `LLMProviderInterface`: Abstract base class for all LLM providers
-   - Provider implementations: `OpenAIProvider`, `AnthropicProvider`, `GoogleProvider`, `TogetherProvider`, `OllamaProvider`
+   - Provider implementations: `OpenAIProvider`, `AnthropicProvider`, `GoogleProvider` (Gemini), `DeepSeekProvider`, `xAIProvider`, `OpenRouterProvider`, `OllamaProvider`
    - Each provider initialized with model config from `model_list.yaml`
    - Fallback mechanism: If LLM response is unclear, random valid move is selected
 
@@ -138,16 +146,26 @@ The `.startsession` script starts both backend API and frontend in a tmux sessio
 Models are defined in `backend/model_lists/model_list.yaml` with the following structure:
 - `name`: Unique identifier used in commands
 - `model_name`: Actual model ID passed to API
-- `provider`: One of: openai, anthropic, google, together, ollama
-- `api_type`: (OpenAI only) Either 'completions' or 'responses'
-- `max_completion_tokens`: Token limit for responses
+- `provider`: One of: openai, anthropic, google, deepseek, xai, openrouter, ollama
+- `max_completion_tokens` or `max_tokens`: Token limit for responses
 - `pricing`: Object with `input` and `output` costs per million tokens (used for cost filtering)
-- `kwargs`: Additional provider-specific parameters
+- `reasoning_effort`: (o3/o4 models only) One of: low, medium, high
+- Additional provider-specific parameters as needed
+
+**Supported Providers (November 2025):**
+- **OpenAI**: GPT-4.1, GPT-5 series, o3/o4 reasoning models
+- **Anthropic**: Claude 3.x, 3.5, 3.7, 4.x, 4.5 models
+- **Google**: Gemini 2.0 and 2.5 series
+- **DeepSeek**: DeepSeek Chat, DeepSeek Reasoner (direct API)
+- **xAI**: Grok-4 models (direct API)
+- **OpenRouter**: Meta Llama, Mistral, Qwen, xAI Grok-3, Nvidia, Amazon Nova, and many others
+- **Ollama**: Local models (prefix name with `ollama-`)
 
 **Adding New Models:**
 1. Add entry to `model_list.yaml` with proper pricing information
 2. Ensure API keys for the provider are in `backend/.env`
 3. For Ollama models, prefix name with `ollama-`
+4. Refer to `backend/model_lists/models.md` for comprehensive model list
 
 ## Game Mechanics
 

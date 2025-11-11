@@ -2,5 +2,9 @@
 .DS_Store?
 ._*
 
+*_plan.md
+
+# Backup files
+*.backup
 
 .env
