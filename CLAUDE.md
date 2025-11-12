@@ -49,6 +49,23 @@ python3 run_batch.py --target-model "my-model" --num-simulations 5 --max-output-
 python3 run_batch.py --target-model "my-model" --num-simulations 5 --max-workers 8
 ```
 
+**Running via API and Web UI:**
+```bash
+# Start backend API server (runs Flask API on port 5000)
+cd backend
+python3 -m app
+
+# Start frontend (runs Next.js on port 3000)
+cd frontend
+npm run dev
+
+# Or use the automated script to start both in tmux
+./.startsession
+
+# Access web UI at http://localhost:3000/launcher
+# See API_GUIDE.md for detailed API documentation and examples
+```
+
 **Updating Rankings:**
 ```bash
 # Update Elo ratings after running simulations
