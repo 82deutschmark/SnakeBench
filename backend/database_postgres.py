@@ -18,30 +18,34 @@ logger = logging.getLogger(__name__)
 
 def get_connection_string() -> str:
     """
-    Get the Supabase PostgreSQL connection string.
+    Get PostgreSQL connection string.
+    Falls back to DATABASE_URL if Supabase credentials aren't available.
 
     Returns:
-        Connection string for Supabase PostgreSQL
+        Connection string for PostgreSQL (Supabase or direct)
     """
     # Get Supabase URL and parse for connection details
     supabase_url = os.getenv('SUPABASE_URL')
     password = os.getenv('SUPABASE_DB_PASSWORD')
 
-    if not supabase_url or not password:
-        raise ValueError("SUPABASE_URL and SUPABASE_DB_PASSWORD are required")
+    if supabase_url and password:
+        # Extract project ref from URL (e.g., ohcwbelgdvjxleimagqp)
+        # URL format: https://ohcwbelgdvjxleimagqp.supabase.co
+        project_ref = supabase_url.split('//')[1].split('.')[0]
 
-    # Extract project ref from URL (e.g., ohcwbelgdvjxleimagqp)
-    # URL format: https://ohcwbelgdvjxleimagqp.supabase.co
-    project_ref = supabase_url.split('//')[1].split('.')[0]
+        # Connection pooler format
+        # postgresql://postgres.[PROJECT-REF]:[PASSWORD]@aws-0-us-west-1.pooler.supabase.com:5432/postgres
+        # For direct connection (transaction mode), use port 6543
+        # For session mode (better for long connections), use port 5432
+        conn_string = f"postgresql://postgres.{project_ref}:{password}@aws-0-us-west-1.pooler.supabase.com:6543/postgres"
+        return conn_string
 
-    # Connection pooler format
-    # postgresql://postgres.[PROJECT-REF]:[PASSWORD]@aws-0-us-west-1.pooler.supabase.com:5432/postgres
-    # For direct connection (transaction mode), use port 6543
-    # For session mode (better for long connections), use port 5432
+    # Fall back to DATABASE_URL (for local development or Railway)
+    database_url = os.getenv('DATABASE_URL')
+    if database_url:
+        return database_url
 
-    conn_string = f"postgresql://postgres.{project_ref}:{password}@aws-0-us-west-1.pooler.supabase.com:6543/postgres"
-
-    return conn_string
+    raise ValueError("Either SUPABASE_URL + SUPABASE_DB_PASSWORD or DATABASE_URL must be set")
 
 
 def get_connection():
